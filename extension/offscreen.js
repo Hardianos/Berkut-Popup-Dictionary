@@ -39,10 +39,12 @@ true              &&(function polyfill() {
 let audio = null;
 const speech = window.speechSynthesis;
 let stopTtsTimestamp = 0;
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  handleMessage(request, sender, sendResponse);
-  return true;
-});
+if (typeof chrome !== "undefined" && chrome.runtime?.onMessage) {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    handleMessage(request, sender, sendResponse);
+    return true;
+  });
+}
 async function handleMessage(request, sender, sendResponse) {
   try {
     if (request.type === "playAudioOffscreen") {

@@ -798,9 +798,7 @@
 #root:not(.effects-enabled) .neon-search-bar .search-input:hover,
 #root:not(.effects-enabled) .neon-search-bar .search-input:focus,
 #root:not(.effects-enabled) .phrasebook-search-input:hover,
-#root:not(.effects-enabled) .phrasebook-search-input:focus,
-#root:not(.effects-enabled) .history-search-input:hover,
-#root:not(.effects-enabled) .history-search-input:focus {
+#root:not(.effects-enabled) .phrasebook-search-input:focus {
     border-color: var(--accent-color) !important;
     outline: none !important;
     /* Ensure default outline doesn't clash */
@@ -966,25 +964,6 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Prevent opacity double-stacking on nested settings cards in glassmorphism */
-.glassmorphism .settings-group-card .settings-card {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-}
-
-.dark.glassmorphism .settings-group-card .settings-card,
-.glassmorphism.dark .settings-group-card .settings-card,
-.dark .glassmorphism .settings-group-card .settings-card {
-    background-color: rgba(0, 0, 0, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-}
-
 /* Search bar adjustment for glassmorphism */
 /* Search bar adjustment for glassmorphism */
 /* Using high specificity to override default theme styles */
@@ -996,10 +975,8 @@
 
 .glassmorphism .app-background .neon-search-bar .search-input,
 .glassmorphism .app-background .phrasebook-search-input,
-.glassmorphism .app-background .history-search-input,
 .glassmorphism .neon-search-bar .search-input,
-.glassmorphism .phrasebook-search-input,
-.glassmorphism .history-search-input {
+.glassmorphism .phrasebook-search-input {
     background-color: rgba(255, 255, 255, 0.4) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
     /* Removed backdrop-filter to match phrasebook-card style exactly */
@@ -1009,14 +986,10 @@
 .glassmorphism.dark .app-background .neon-search-bar .search-input,
 .dark .glassmorphism .app-background .phrasebook-search-input,
 .glassmorphism.dark .app-background .phrasebook-search-input,
-.dark .glassmorphism .app-background .history-search-input,
-.glassmorphism.dark .app-background .history-search-input,
 .dark .glassmorphism .neon-search-bar .search-input,
 .glassmorphism.dark .neon-search-bar .search-input,
 .dark .glassmorphism .phrasebook-search-input,
-.glassmorphism.dark .phrasebook-search-input,
-.dark .glassmorphism .history-search-input,
-.glassmorphism.dark .history-search-input {
+.glassmorphism.dark .phrasebook-search-input {
     background-color: rgba(31, 41, 55, 0.4) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -2290,17 +2263,9 @@
 }
 
 /* Ensure language dropdown parent card overlays subsequent sibling cards */
-.settings-card:has(.language-selector-container.open),
-.settings-card.has-open-dropdown {
-    z-index: 50 !important;
-    position: relative !important;
-}
-
-/* Ensure the parent settings group containing the open dropdown overlays subsequent groups */
-.settings-group-card:has(.language-selector-container.open),
-.settings-group-card:has(.has-open-dropdown) {
-    z-index: 100 !important;
-    position: relative !important;
+.settings-card:has(.language-selector-container.open) {
+    z-index: 10 !important;
+    position: relative;
 }
 
 .settings-card:hover {
@@ -2504,9 +2469,7 @@
 /* Input field styling */
 .language-selector-input {
     width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-    padding: 0 14px;
+    padding: 10px 14px;
     padding-right: 36px;
     border: 1px solid var(--border-dark);
     border-radius: 8px;
@@ -2789,13 +2752,13 @@
 .info-note-popup.position-top {
     bottom: calc(100% + 10px);
     top: auto;
-    transform: translateX(var(--popup-tx, -50%)) translateY(10px);
+    transform: translateX(-50%) translateY(10px);
 }
 
 .info-note-popup.position-bottom {
     top: calc(100% + 10px);
     bottom: auto;
-    transform: translateX(var(--popup-tx, -50%)) translateY(-10px);
+    transform: translateX(-50%) translateY(-10px);
 }
 
 
@@ -2821,7 +2784,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(var(--popup-tx, -50%)) translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .app-background:not(.dark) .info-note-popup {
@@ -2901,9 +2864,4 @@
 .keyboard-badge-offset .info-badge-icon {
     padding-right: 0px;
     transform: translate(0.1px, -2px);
-}
-
-/* Allow scrolling inside phrasebook word details to chain up to the main scrollbar */
-.phrasebook-card .custom-scrollbar {
-    overscroll-behavior: auto !important;
 }

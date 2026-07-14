@@ -609,7 +609,7 @@ function requireReact_production () {
 	react_production.useTransition = function () {
 	  return ReactSharedInternals.H.useTransition();
 	};
-	react_production.version = "19.2.7";
+	react_production.version = "19.2.1";
 	return react_production;
 }
 
@@ -650,7 +650,7 @@ var hasRequiredScheduler_production;
 function requireScheduler_production () {
 	if (hasRequiredScheduler_production) return scheduler_production;
 	hasRequiredScheduler_production = 1;
-	(function (exports) {
+	(function (exports$1) {
 		function push(heap, node) {
 		  var index = heap.length;
 		  heap.push(node);
@@ -699,16 +699,16 @@ function requireScheduler_production () {
 		  var diff = a.sortIndex - b.sortIndex;
 		  return 0 !== diff ? diff : a.id - b.id;
 		}
-		exports.unstable_now = void 0;
+		exports$1.unstable_now = void 0;
 		if ("object" === typeof performance && "function" === typeof performance.now) {
 		  var localPerformance = performance;
-		  exports.unstable_now = function () {
+		  exports$1.unstable_now = function () {
 		    return localPerformance.now();
 		  };
 		} else {
 		  var localDate = Date,
 		    initialTime = localDate.now();
-		  exports.unstable_now = function () {
+		  exports$1.unstable_now = function () {
 		    return localDate.now() - initialTime;
 		  };
 		}
@@ -756,14 +756,14 @@ function requireScheduler_production () {
 		function shouldYieldToHost() {
 		  return needsPaint
 		    ? true
-		    : exports.unstable_now() - startTime < frameInterval
+		    : exports$1.unstable_now() - startTime < frameInterval
 		      ? false
 		      : true;
 		}
 		function performWorkUntilDeadline() {
 		  needsPaint = false;
 		  if (isMessageLoopRunning) {
-		    var currentTime = exports.unstable_now();
+		    var currentTime = exports$1.unstable_now();
 		    startTime = currentTime;
 		    var hasMoreWork = true;
 		    try {
@@ -793,7 +793,7 @@ function requireScheduler_production () {
 		                var continuationCallback = callback(
 		                  currentTask.expirationTime <= currentTime
 		                );
-		                currentTime = exports.unstable_now();
+		                currentTime = exports$1.unstable_now();
 		                if ("function" === typeof continuationCallback) {
 		                  currentTask.callback = continuationCallback;
 		                  advanceTimers(currentTime);
@@ -849,29 +849,29 @@ function requireScheduler_production () {
 		  };
 		function requestHostTimeout(callback, ms) {
 		  taskTimeoutID = localSetTimeout(function () {
-		    callback(exports.unstable_now());
+		    callback(exports$1.unstable_now());
 		  }, ms);
 		}
-		exports.unstable_IdlePriority = 5;
-		exports.unstable_ImmediatePriority = 1;
-		exports.unstable_LowPriority = 4;
-		exports.unstable_NormalPriority = 3;
-		exports.unstable_Profiling = null;
-		exports.unstable_UserBlockingPriority = 2;
-		exports.unstable_cancelCallback = function (task) {
+		exports$1.unstable_IdlePriority = 5;
+		exports$1.unstable_ImmediatePriority = 1;
+		exports$1.unstable_LowPriority = 4;
+		exports$1.unstable_NormalPriority = 3;
+		exports$1.unstable_Profiling = null;
+		exports$1.unstable_UserBlockingPriority = 2;
+		exports$1.unstable_cancelCallback = function (task) {
 		  task.callback = null;
 		};
-		exports.unstable_forceFrameRate = function (fps) {
+		exports$1.unstable_forceFrameRate = function (fps) {
 		  0 > fps || 125 < fps
 		    ? console.error(
 		        "forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"
 		      )
 		    : (frameInterval = 0 < fps ? Math.floor(1e3 / fps) : 5);
 		};
-		exports.unstable_getCurrentPriorityLevel = function () {
+		exports$1.unstable_getCurrentPriorityLevel = function () {
 		  return currentPriorityLevel;
 		};
-		exports.unstable_next = function (eventHandler) {
+		exports$1.unstable_next = function (eventHandler) {
 		  switch (currentPriorityLevel) {
 		    case 1:
 		    case 2:
@@ -889,10 +889,10 @@ function requireScheduler_production () {
 		    currentPriorityLevel = previousPriorityLevel;
 		  }
 		};
-		exports.unstable_requestPaint = function () {
+		exports$1.unstable_requestPaint = function () {
 		  needsPaint = true;
 		};
-		exports.unstable_runWithPriority = function (priorityLevel, eventHandler) {
+		exports$1.unstable_runWithPriority = function (priorityLevel, eventHandler) {
 		  switch (priorityLevel) {
 		    case 1:
 		    case 2:
@@ -911,12 +911,12 @@ function requireScheduler_production () {
 		    currentPriorityLevel = previousPriorityLevel;
 		  }
 		};
-		exports.unstable_scheduleCallback = function (
+		exports$1.unstable_scheduleCallback = function (
 		  priorityLevel,
 		  callback,
 		  options
 		) {
-		  var currentTime = exports.unstable_now();
+		  var currentTime = exports$1.unstable_now();
 		  "object" === typeof options && null !== options
 		    ? ((options = options.delay),
 		      (options =
@@ -967,8 +967,8 @@ function requireScheduler_production () {
 		          ((isMessageLoopRunning = true), schedulePerformWorkUntilDeadline())));
 		  return priorityLevel;
 		};
-		exports.unstable_shouldYield = shouldYieldToHost;
-		exports.unstable_wrapCallback = function (callback) {
+		exports$1.unstable_shouldYield = shouldYieldToHost;
+		exports$1.unstable_wrapCallback = function (callback) {
 		  var parentPriorityLevel = currentPriorityLevel;
 		  return function () {
 		    var previousPriorityLevel = currentPriorityLevel;
@@ -1212,7 +1212,7 @@ function requireReactDom_production () {
 	reactDom_production.useFormStatus = function () {
 	  return ReactSharedInternals.H.useHostTransitionStatus();
 	};
-	reactDom_production.version = "19.2.7";
+	reactDom_production.version = "19.2.1";
 	return reactDom_production;
 }
 
@@ -17152,14 +17152,14 @@ function requireReactDomClient_production () {
 	};
 	var isomorphicReactPackageVersion$jscomp$inline_1840 = React.version;
 	if (
-	  "19.2.7" !==
+	  "19.2.1" !==
 	  isomorphicReactPackageVersion$jscomp$inline_1840
 	)
 	  throw Error(
 	    formatProdErrorMessage(
 	      527,
 	      isomorphicReactPackageVersion$jscomp$inline_1840,
-	      "19.2.7"
+	      "19.2.1"
 	    )
 	  );
 	ReactDOMSharedInternals.findDOMNode = function (componentOrElement) {
@@ -17181,10 +17181,10 @@ function requireReactDomClient_production () {
 	};
 	var internals$jscomp$inline_2347 = {
 	  bundleType: 0,
-	  version: "19.2.7",
+	  version: "19.2.1",
 	  rendererPackageName: "react-dom",
 	  currentDispatcherRef: ReactSharedInternals,
-	  reconcilerVersion: "19.2.7"
+	  reconcilerVersion: "19.2.1"
 	};
 	if ("undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__) {
 	  var hook$jscomp$inline_2348 = __REACT_DEVTOOLS_GLOBAL_HOOK__;
@@ -17282,7 +17282,7 @@ function requireReactDomClient_production () {
 	  listenToAllSupportedEvents(container);
 	  return new ReactDOMHydrationRoot(initialChildren);
 	};
-	reactDomClient_production.version = "19.2.7";
+	reactDomClient_production.version = "19.2.1";
 	return reactDomClient_production;
 }
 
@@ -17311,25 +17311,95 @@ function requireClient () {
 var clientExports = requireClient();
 const ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(clientExports);
 
-const defaultShortcuts = {
-  focusSearch: { key: "/", ctrl: false, shift: false, alt: false, meta: false },
-  close: { key: "Escape", ctrl: false, shift: false, alt: false, meta: false },
-  playSound: { key: "Control", ctrl: true, shift: false, alt: false, meta: false, doublePress: false },
-  playTranslatedSound: { key: "Control", ctrl: true, shift: false, alt: false, meta: false, doublePress: true },
-  addToPhrasebook: { key: "b", ctrl: true, shift: false, alt: false, meta: false },
-  copy: { key: "c", ctrl: true, shift: false, alt: false, meta: false },
-  reTranslate: { key: "Enter", ctrl: true, shift: false, alt: false, meta: false },
-  showHistory: { key: "d", ctrl: true, shift: false, alt: false, meta: false },
-  showPhrasebook: { key: "v", ctrl: true, shift: false, alt: false, meta: false },
-  showSettings: { key: "s", ctrl: true, shift: false, alt: false, meta: false },
-  askAI: { key: "a", ctrl: true, shift: false, alt: false, meta: false },
-  toggleNeon: { key: "n", ctrl: true, shift: true, alt: false, meta: false },
-  toggleGlass: { key: "g", ctrl: true, shift: true, alt: false, meta: false },
-  toggleTheme: { key: "l", ctrl: true, shift: true, alt: false, meta: false },
-  toggleAutoPopup: { key: "p", ctrl: true, shift: true, alt: false, meta: false }
+const playText = async (text, lang, timestamp = Date.now(), voiceTarget = "source", sourceLang = "en", targetLang = "fa", settings = {}) => {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage({
+      type: "PLAY_TTS",
+      payload: {
+        sourceText: text,
+        sourceLang: lang,
+        targetText: "",
+        targetLang: "",
+        voiceTarget: "source",
+        timestamp,
+        setting: settings
+      }
+    }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error("TTS Error:", chrome.runtime.lastError);
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve();
+      }
+    });
+  });
 };
 
-const isRTLLanguage = (lang) => ["Persian", "Arabic"].includes(lang);
+const POPUP_WIDTH = 440;
+const POPUP_HEIGHT = 580;
+const POPUP_MARGIN = 12;
+let cachedOverlayCss = null;
+let cssLoadedPromise = null;
+const loadStyles = () => {
+  if (cachedOverlayCss) {
+    return Promise.resolve(cachedOverlayCss);
+  }
+  if (cssLoadedPromise) {
+    return cssLoadedPromise;
+  }
+  const cssUrl = chrome.runtime.getURL("overlay.css");
+  const fontRegularUrl = chrome.runtime.getURL("fonts/vazirmatn-regular.woff2");
+  const fontBoldUrl = chrome.runtime.getURL("fonts/vazirmatn-bold.woff2");
+  cssLoadedPromise = fetch(cssUrl).then((res) => res.text()).then((css) => {
+    cachedOverlayCss = css.replace(/url\(['"]?fonts\/vazirmatn-regular\.woff2['"]?\)/g, `url('${fontRegularUrl}')`).replace(/url\(['"]?fonts\/vazirmatn-bold\.woff2['"]?\)/g, `url('${fontBoldUrl}')`);
+    return cachedOverlayCss;
+  }).catch((err) => {
+    console.error("Failed to load styles:", err);
+    return "";
+  });
+  return cssLoadedPromise;
+};
+const preloadStyles = () => {
+  try {
+    const fontRegularUrl = chrome.runtime.getURL("fonts/vazirmatn-regular.woff2");
+    const fontBoldUrl = chrome.runtime.getURL("fonts/vazirmatn-bold.woff2");
+    loadStyles();
+    const mainFontStyleId = "berkut-fonts";
+    if (!document.getElementById(mainFontStyleId)) {
+      const mainFontStyle = document.createElement("style");
+      mainFontStyle.id = mainFontStyleId;
+      mainFontStyle.textContent = `
+                @font-face { font-family: 'Vazirmatn'; src: url('${fontRegularUrl}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+                @font-face { font-family: 'Vazirmatn'; src: url('${fontBoldUrl}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+                @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+                @keyframes neon-border-dance { to { --angle: 360deg; } }
+                @keyframes neon-flow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+                @keyframes neon-pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
+            `;
+      document.head.appendChild(mainFontStyle);
+    }
+  } catch (e) {
+    console.error("Error in preloadStyles:", e);
+  }
+};
+preloadStyles();
+chrome.runtime.sendMessage({ type: "WAKE_UP" }).catch(() => {
+});
+async function sendMessage(type, payload) {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage({ type, payload }, (response) => {
+      if (chrome.runtime.lastError) {
+        reject(new Error(chrome.runtime.lastError.message));
+        return;
+      }
+      if (response?.success) {
+        resolve(response.data);
+      } else {
+        reject(new Error(response?.error || "Unknown error"));
+      }
+    });
+  });
+}
 const isTypingInTextField = (target) => {
   const el = target instanceof HTMLElement ? target : null;
   if (!el) return false;
@@ -17361,26 +17431,16 @@ const attachPopupScrollLock = (container) => {
     if (!path.includes(container)) return;
     let scrollTarget = null;
     for (const node of path) {
-      if (!node || node.nodeType !== 1) continue;
-      const element = node;
-      const isScrollClass = element.classList && (element.classList.contains("berkut-scroll-contain") || element.classList.contains("custom-scrollbar"));
-      let isScrollStyle = false;
-      try {
-        const { overflowY } = getComputedStyle(element);
-        isScrollStyle = overflowY === "auto" || overflowY === "scroll" || overflowY === "overlay";
-      } catch (err) {
-      }
-      const isMainElement = element.tagName === "MAIN";
-      if (isScrollClass || isScrollStyle || isMainElement) {
-        scrollTarget = element;
+      if (!(node instanceof HTMLElement)) continue;
+      const { overflowY } = getComputedStyle(node);
+      if (overflowY === "auto" || overflowY === "scroll" || overflowY === "overlay") {
+        scrollTarget = node;
         break;
       }
     }
     if (!scrollTarget) {
-      const root = container.shadowRoot || container;
-      scrollTarget = root.querySelector(".berkut-scroll-contain") || root.querySelector("main");
-    }
-    if (!scrollTarget) {
+      e.preventDefault();
+      e.stopPropagation();
       return;
     }
     const hasOverflow = scrollTarget.scrollHeight > scrollTarget.clientHeight + 1;
@@ -17394,6 +17454,7 @@ const attachPopupScrollLock = (container) => {
   container.addEventListener("wheel", handleWheel, { capture: true, passive: false });
   return () => container.removeEventListener("wheel", handleWheel, { capture: true });
 };
+let popupScrollLockCleanup = null;
 const handleSettingsKeyDown = (e, currentValue, setter, step, min, max, isFloat = false) => {
   if (e.key === "ArrowUp" || e.key === "ArrowRight") {
     e.preventDefault();
@@ -17405,6 +17466,7 @@ const handleSettingsKeyDown = (e, currentValue, setter, step, min, max, isFloat 
     setter(isFloat ? parseFloat(next.toFixed(1)) : Math.round(next));
   }
 };
+const isRTLLanguage = (lang) => ["Persian", "Arabic"].includes(lang);
 const storage = {
   async get(key, defaultValue) {
     return new Promise((resolve) => {
@@ -17419,412 +17481,87 @@ const storage = {
     });
   }
 };
+let cachedAutoPopup = false;
+chrome.storage.local.get(["dictionaryAutoPopup"], (result) => {
+  if (result.dictionaryAutoPopup !== void 0) {
+    cachedAutoPopup = result.dictionaryAutoPopup;
+  }
+});
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === "local" && changes.dictionaryAutoPopup) {
+    cachedAutoPopup = changes.dictionaryAutoPopup.newValue;
+  }
+});
+async function getAllPhrases() {
+  return sendMessage("GET_ALL_PHRASES");
+}
+async function addPhrase(phrase) {
+  return sendMessage("ADD_PHRASE", { phrase });
+}
+async function deletePhrase(id) {
+  return sendMessage("DELETE_PHRASE", { id });
+}
+async function clearAllPhrases() {
+  return sendMessage("CLEAR_ALL_PHRASES");
+}
+async function getDictionaryEntry(word) {
+  return sendMessage("GET_DICTIONARY_ENTRY", { word });
+}
+async function addDictionaryEntry(entry) {
+  return sendMessage("ADD_DICTIONARY_ENTRY", { entry });
+}
+async function clearAllDictionaryEntries() {
+  return sendMessage("CLEAR_DICTIONARY_CACHE");
+}
+async function clearAllPronunciations() {
+  return Promise.resolve();
+}
+let popupContainer = null;
+let triggerButton = null;
+let root = null;
+const removePopup = () => {
+  if (popupContainer) {
+    popupScrollLockCleanup?.();
+    popupScrollLockCleanup = null;
+    popupContainer.style.opacity = "0";
+    popupContainer.style.transform = "scale(0.95)";
+    const containerToRemove = popupContainer;
+    const rootToRemove = root;
+    popupContainer = null;
+    root = null;
+    setTimeout(() => {
+      if (rootToRemove) {
+        rootToRemove.unmount();
+      }
+      if (containerToRemove && containerToRemove.parentNode) {
+        containerToRemove.remove();
+      }
+    }, 350);
+  }
+};
+const removeTrigger = () => {
+  if (triggerButton) {
+    triggerButton.style.opacity = "0";
+    triggerButton.style.transform = "scale(0.95)";
+    const triggerToRemove = triggerButton;
+    triggerButton = null;
+    setTimeout(() => {
+      if (triggerToRemove && triggerToRemove.parentNode) {
+        triggerToRemove.remove();
+      }
+    }, 350);
+  }
+};
+const removeAll = () => {
+  removePopup();
+  removeTrigger();
+};
 const truncateText = (text, limit) => {
   if (!text) return "";
   if (text.length <= limit) return text;
   return text.substring(0, limit) + "...";
 };
-const normalizeKey = (key) => {
-  if (key === " ") return "Space";
-  return key;
-};
-const isModifier = (key) => ["Control", "Shift", "Alt", "Meta"].includes(key);
-const getPhysicalKey = (e) => {
-  if (e.code.startsWith("Key")) return e.code.slice(3).toLowerCase();
-  if (e.code.startsWith("Digit")) return e.code.slice(5);
-  const codeMap = {
-    "Slash": "/",
-    "Backslash": "\\",
-    "Period": ".",
-    "Comma": ",",
-    "Semicolon": ";",
-    "Quote": "'",
-    "BracketLeft": "[",
-    "BracketRight": "]",
-    "Minus": "-",
-    "Equal": "=",
-    "Backquote": "`"
-  };
-  if (e.code in codeMap) {
-    return codeMap[e.code];
-  }
-  return null;
-};
-
-const InfoBadge = ({ note, className }) => {
-  const [popupPosition, setPopupPosition] = reactExports.useState("top");
-  const [popupStyle, setPopupStyle] = reactExports.useState({});
-  const containerRef = reactExports.useRef(null);
-  const handleMouseEnter = () => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const appBase = containerRef.current.closest(".app-background");
-      let position = "top";
-      let txVal = "-50%";
-      if (appBase) {
-        const baseRect = appBase.getBoundingClientRect();
-        const relativeTop = rect.top - baseRect.top;
-        const spaceBelow = baseRect.height - (rect.bottom - baseRect.top);
-        if (relativeTop < 140) {
-          position = "bottom";
-        } else if (spaceBelow < 160 && relativeTop > 160) {
-          position = "top";
-        } else {
-          position = "top";
-        }
-        const badgeCenter = rect.left + rect.width / 2 - baseRect.left;
-        let popupLeftRelative = badgeCenter - 140;
-        const minLeft = 12;
-        const maxLeft = baseRect.width - 280 - 12;
-        if (popupLeftRelative < minLeft) {
-          popupLeftRelative = minLeft;
-        } else if (popupLeftRelative > maxLeft) {
-          popupLeftRelative = maxLeft;
-        }
-        const targetLeftRelativeToBadge = popupLeftRelative - (rect.left - baseRect.left);
-        const currentLeftRelativeToBadge = rect.width / 2;
-        const calculatedTx = targetLeftRelativeToBadge - currentLeftRelativeToBadge;
-        txVal = `${calculatedTx}px`;
-      } else {
-        if (rect.top < 140) {
-          position = "bottom";
-        } else {
-          position = "top";
-        }
-      }
-      setPopupPosition(position);
-      setPopupStyle({
-        "--popup-tx": txVal
-      });
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: `info-badge-container ${className || ""}`,
-      ref: containerRef,
-      onMouseEnter: handleMouseEnter,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "info-badge-icon", "aria-label": "Information", children: "!" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: `info-note-popup position-${popupPosition}`,
-            style: popupStyle,
-            children: note
-          }
-        )
-      ]
-    }
-  );
-};
-
-const LanguageSelector = ({
-  targetLanguage,
-  onSelect,
-  isDarkMode
-}) => {
-  const [isOpen, setIsOpen] = reactExports.useState(false);
-  const [searchTerm, setSearchTerm] = reactExports.useState("");
-  const [activeIndex, setActiveIndex] = reactExports.useState(-1);
-  const dropdownRef = reactExports.useRef(null);
-  const languages = [
-    "Persian",
-    "Russian",
-    "English",
-    "German",
-    "Chinese",
-    "Arabic",
-    "Spanish",
-    "Portuguese",
-    "Italian",
-    "Japanese",
-    "Korean",
-    "Turkish"
-  ];
-  const filteredLanguages = languages.filter(
-    (lang) => lang.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  reactExports.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current) {
-        const path = event.composedPath();
-        if (!path.includes(dropdownRef.current)) {
-          setIsOpen(false);
-        }
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-  reactExports.useEffect(() => {
-    if (!dropdownRef.current) return;
-    const parentCard = dropdownRef.current.closest(".settings-card");
-    if (parentCard) {
-      if (isOpen) {
-        parentCard.classList.add("has-open-dropdown");
-      } else {
-        parentCard.classList.remove("has-open-dropdown");
-      }
-    }
-    return () => {
-      if (parentCard) {
-        parentCard.classList.remove("has-open-dropdown");
-      }
-    };
-  }, [isOpen]);
-  reactExports.useEffect(() => {
-    setActiveIndex(-1);
-  }, [isOpen, searchTerm]);
-  const handleToggle = (e) => {
-    e.preventDefault();
-    setIsOpen((prev) => {
-      const next = !prev;
-      if (next) setSearchTerm("");
-      return next;
-    });
-  };
-  const handleInputMouseDown = (e) => {
-    if (!isOpen) {
-      setIsOpen(true);
-      setSearchTerm("");
-    }
-  };
-  const handleSelect = (lang) => {
-    onSelect(lang);
-    setIsOpen(false);
-    setSearchTerm("");
-  };
-  const handleKeyDown = (e) => {
-    if (!isOpen) {
-      if (e.key === "Enter" || e.key === "ArrowDown") {
-        setIsOpen(true);
-      }
-      return;
-    }
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setActiveIndex((prev) => prev < filteredLanguages.length - 1 ? prev + 1 : prev);
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setActiveIndex((prev) => prev > 0 ? prev - 1 : 0);
-        break;
-      case "Enter":
-        e.preventDefault();
-        if (activeIndex >= 0 && activeIndex < filteredLanguages.length) {
-          handleSelect(filteredLanguages[activeIndex]);
-        } else if (filteredLanguages.length > 0) {
-          handleSelect(filteredLanguages[0]);
-        }
-        break;
-      case "Escape":
-        e.preventDefault();
-        setIsOpen(false);
-        break;
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `language-selector-container ${isOpen ? "open" : ""}`, ref: dropdownRef, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "input",
-      {
-        type: "text",
-        className: "language-selector-input",
-        placeholder: isOpen ? "Search languages..." : targetLanguage,
-        value: isOpen ? searchTerm : targetLanguage,
-        onMouseDown: handleInputMouseDown,
-        onChange: (e) => setSearchTerm(e.target.value),
-        onKeyDown: handleKeyDown,
-        readOnly: !isOpen
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-selector-chevron", onMouseDown: handleToggle, children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6 9l6 6 6-6" }) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown custom-scrollbar", children: filteredLanguages.length > 0 ? filteredLanguages.map((lang, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: `language-dropdown-item ${lang === targetLanguage ? "selected" : ""} ${index === activeIndex ? "active" : ""}`,
-        onMouseDown: (e) => {
-          e.preventDefault();
-          handleSelect(lang);
-        },
-        children: (() => {
-          if (!searchTerm) return lang;
-          const matchIdx = lang.toLowerCase().indexOf(searchTerm.toLowerCase());
-          if (matchIdx === -1) return lang;
-          return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            lang.substring(0, matchIdx),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "language-match-highlight", children: lang.substring(matchIdx, matchIdx + searchTerm.length) }),
-            lang.substring(matchIdx + searchTerm.length)
-          ] });
-        })()
-      },
-      lang
-    )) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown-empty", children: "No matching languages" }) })
-  ] });
-};
-
-const CustomDropdown = ({
-  value,
-  options,
-  onChange,
-  isDarkMode,
-  placeholder = "Select...",
-  onFocus,
-  disabled = false
-}) => {
-  const [isOpen, setIsOpen] = reactExports.useState(false);
-  const [activeIndex, setActiveIndex] = reactExports.useState(-1);
-  const dropdownRef = reactExports.useRef(null);
-  const itemsRef = reactExports.useRef([]);
-  const selectedOption = options.find((opt) => opt.value === value) || { label: value };
-  reactExports.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current) {
-        const path = event.composedPath();
-        if (!path.includes(dropdownRef.current)) {
-          setIsOpen(false);
-        }
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-  reactExports.useEffect(() => {
-    if (!dropdownRef.current) return;
-    const parentCard = dropdownRef.current.closest(".settings-card");
-    if (parentCard) {
-      if (isOpen) {
-        parentCard.classList.add("has-open-dropdown");
-      } else {
-        parentCard.classList.remove("has-open-dropdown");
-      }
-    }
-    return () => {
-      if (parentCard) {
-        parentCard.classList.remove("has-open-dropdown");
-      }
-    };
-  }, [isOpen]);
-  reactExports.useEffect(() => {
-    if (isOpen) {
-      const currentIdx = options.findIndex((opt) => opt.value === value);
-      setActiveIndex(currentIdx >= 0 ? currentIdx : 0);
-    } else {
-      setActiveIndex(-1);
-    }
-  }, [isOpen, value, options]);
-  reactExports.useEffect(() => {
-    if (isOpen && activeIndex >= 0 && itemsRef.current[activeIndex]) {
-      itemsRef.current[activeIndex]?.scrollIntoView({
-        block: "nearest"
-      });
-    }
-  }, [activeIndex, isOpen]);
-  const handleMouseDown = (e) => {
-    if (disabled) return;
-    if (e.button !== 0) return;
-    e.preventDefault();
-    setIsOpen((prev) => !prev);
-    if (onFocus) {
-      onFocus();
-    }
-  };
-  const handleSelect = (val) => {
-    onChange(val);
-    setIsOpen(false);
-  };
-  const handleKeyDown = (e) => {
-    if (disabled) return;
-    if (!isOpen) {
-      if (e.key === "Enter" || e.key === "ArrowDown" || e.key === " ") {
-        e.preventDefault();
-        setIsOpen(true);
-        if (onFocus) onFocus();
-      }
-      return;
-    }
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setActiveIndex((prev) => prev < options.length - 1 ? prev + 1 : prev);
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setActiveIndex((prev) => prev > 0 ? prev - 1 : 0);
-        break;
-      case "Enter":
-      case " ":
-        e.preventDefault();
-        if (activeIndex >= 0 && activeIndex < options.length) {
-          handleSelect(options[activeIndex].value);
-        }
-        break;
-      case "Escape":
-        e.preventDefault();
-        setIsOpen(false);
-        break;
-      case "Tab":
-        setIsOpen(false);
-        break;
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: `language-selector-container ${isOpen ? "open" : ""} ${disabled ? "opacity-50 pointer-events-none" : ""}`,
-      ref: dropdownRef,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "language-selector-input flex items-center justify-between",
-            onMouseDown: handleMouseDown,
-            tabIndex: disabled ? -1 : 0,
-            onKeyDown: handleKeyDown,
-            style: {
-              cursor: disabled ? "not-allowed" : "pointer",
-              userSelect: "none",
-              ...isOpen ? {
-                borderColor: "var(--accent-color)",
-                boxShadow: "0 0 0 2px color-mix(in srgb, var(--accent-color), transparent 80%)"
-              } : {}
-            },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "truncate", children: selectedOption.label })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-selector-chevron", onMouseDown: handleMouseDown, children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6 9l6 6 6-6" }) }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown custom-scrollbar", style: { maxHeight: "180px" }, children: options.length > 0 ? options.map((opt, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            ref: (el) => {
-              itemsRef.current[index] = el;
-            },
-            className: `language-dropdown-item ${opt.value === value ? "selected" : ""} ${index === activeIndex ? "active" : ""}`,
-            onMouseDown: (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleSelect(opt.value);
-            },
-            children: opt.label
-          },
-          opt.value
-        )) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown-empty", children: "No options available" }) })
-      ]
-    }
-  );
-};
-
-const RelatedWords = ({
-  title,
-  words,
-  translations,
-  onPlayPronunciation,
-  onWordClick,
-  speakingWord,
-  isDarkMode,
-  targetLanguage
-}) => {
+const RelatedWords = ({ title, words, translations, onPlayPronunciation, onWordClick, speakingWord, isDarkMode, targetLanguage }) => {
   const [isExpanded, setIsExpanded] = reactExports.useState(false);
   const isRTL = isRTLLanguage(targetLanguage);
   if (!words || words.length === 0) {
@@ -17835,6 +17572,8 @@ const RelatedWords = ({
     if (t === "synonyms") return "var(--accent-color)";
     if (t === "antonyms") return isDarkMode ? "#ef4444" : "#b91c1c";
     if (t === "nouns") return isDarkMode ? "#60a5fa" : "#1e40af";
+    if (t === "verbs") return isDarkMode ? "#4ade80" : "#15803d";
+    if (t === "adjectives") return isDarkMode ? "#fbbf24" : "#b45309";
     if (t === "verbs") return isDarkMode ? "#4ade80" : "#15803d";
     if (t === "adjectives") return isDarkMode ? "#fbbf24" : "#b45309";
     if (t === "adverbs") return isDarkMode ? "#a78bfa" : "#6b21a8";
@@ -17853,15 +17592,9 @@ const RelatedWords = ({
   const tagBaseClasses = "flex items-center px-3 rounded-full cursor-pointer word-chip-interactive";
   const wordsToShow = isExpanded ? words : words.slice(0, 5);
   const hasMore = words.length > 5;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: "4px" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: {
-      height: "1px",
-      width: "100%",
-      backgroundColor: isDarkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)",
-      marginTop: "10px",
-      marginBottom: "10px"
-    } }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold text-gray-600 dark:text-gray-400", style: { marginBottom: "10px" }, children: title }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginTop: "12px" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: "1px", width: "100%", backgroundColor: "var(--border-dark)", opacity: 0.4, marginTop: "12px", marginBottom: "12px" } }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-3", style: { color: "#9ca3af" }, children: title }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
       wordsToShow.map((word, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
@@ -17925,48 +17658,23 @@ const RelatedWords = ({
     ] })
   ] });
 };
-
-const SettingsGroup = ({
-  title,
-  children,
-  isOpen,
-  onToggle,
-  isDarkMode,
-  infoNote,
-  infoBadgeClassName,
-  glassmorphismEnabled = false
-}) => {
-  const defaultBgColor = isDarkMode ? "#1f2937" : "#ffffff";
-  const defaultBorderColor = isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb";
-  const cardBgColor = glassmorphismEnabled ? isDarkMode ? "rgba(31, 41, 55, 0.45)" : "rgba(255, 255, 255, 0.35)" : defaultBgColor;
-  const cardBorderColor = glassmorphismEnabled ? isDarkMode ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.55)" : defaultBorderColor;
-  const backdropFilter = glassmorphismEnabled ? "blur(10px) saturate(125%)" : "none";
-  const contentBgColor = glassmorphismEnabled ? "rgba(255, 255, 255, 0.05)" : isDarkMode ? "rgba(31, 41, 55, 0.5)" : "rgba(249, 250, 251, 0.5)";
-  const contentBorderTopColor = glassmorphismEnabled ? isDarkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.3)" : isDarkMode ? "rgba(55, 65, 81, 0.6)" : "#e5e7eb";
+const SettingsGroup = ({ title, children, isOpen, onToggle, isDarkMode, infoNote, infoBadgeClassName }) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       className: "rounded-xl cursor-pointer group mb-3 settings-group-card",
       style: {
-        backgroundColor: cardBgColor,
-        border: `1px solid ${cardBorderColor}`,
-        backdropFilter,
-        WebkitBackdropFilter: backdropFilter,
+        backgroundColor: isDarkMode ? "#1f2937" : "#ffffff",
+        border: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb"}`,
         transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)"
       },
       onMouseEnter: (e) => {
-        e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.15)";
+        e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
         e.currentTarget.style.borderColor = "var(--accent-color)";
-        if (glassmorphismEnabled) {
-          e.currentTarget.style.backgroundColor = isDarkMode ? "rgba(31, 41, 55, 0.55)" : "rgba(255, 255, 255, 0.45)";
-        }
       },
       onMouseLeave: (e) => {
         e.currentTarget.style.boxShadow = "none";
-        e.currentTarget.style.borderColor = cardBorderColor;
-        if (glassmorphismEnabled) {
-          e.currentTarget.style.backgroundColor = cardBgColor;
-        }
+        e.currentTarget.style.borderColor = isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb";
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -18015,6 +17723,7 @@ const SettingsGroup = ({
             style: {
               overflow: isOpen ? "visible" : "hidden",
               maxHeight: isOpen ? "1000px" : "0px",
+              // Removed opacity animation to prevent glass effect delay - backdrop-filter requires opaque container
               transform: isOpen ? "none" : "translateY(-8px) scale(0.98)",
               transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
             },
@@ -18023,8 +17732,8 @@ const SettingsGroup = ({
               {
                 className: "p-4 space-y-4 settings-group-content",
                 style: {
-                  borderTop: `1px solid ${contentBorderTopColor}`,
-                  backgroundColor: contentBgColor
+                  borderTop: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.6)" : "#e5e7eb"}`,
+                  backgroundColor: isDarkMode ? "rgba(31, 41, 55, 0.5)" : "rgba(249, 250, 251, 0.5)"
                 },
                 children
               }
@@ -18035,14 +17744,24 @@ const SettingsGroup = ({
     }
   );
 };
-
-const ShortcutRecorder = ({
-  label,
-  shortcut,
-  onChange,
-  isDarkMode,
-  onRecordingChange
-}) => {
+const defaultShortcuts = {
+  focusSearch: { key: "/", ctrl: false, shift: false, alt: false, meta: false },
+  close: { key: "Escape", ctrl: false, shift: false, alt: false, meta: false },
+  playSound: { key: "Control", ctrl: true, shift: false, alt: false, meta: false, doublePress: false },
+  playTranslatedSound: { key: "Control", ctrl: true, shift: false, alt: false, meta: false, doublePress: true },
+  addToPhrasebook: { key: "b", ctrl: true, shift: false, alt: false, meta: false },
+  copy: { key: "c", ctrl: true, shift: false, alt: false, meta: false },
+  reTranslate: { key: "Enter", ctrl: true, shift: false, alt: false, meta: false },
+  showHistory: { key: "d", ctrl: true, shift: false, alt: false, meta: false },
+  showPhrasebook: { key: "v", ctrl: true, shift: false, alt: false, meta: false },
+  showSettings: { key: "s", ctrl: true, shift: false, alt: false, meta: false },
+  askAI: { key: "a", ctrl: true, shift: false, alt: false, meta: false },
+  toggleNeon: { key: "n", ctrl: true, shift: true, alt: false, meta: false },
+  toggleGlass: { key: "g", ctrl: true, shift: true, alt: false, meta: false },
+  toggleTheme: { key: "l", ctrl: true, shift: true, alt: false, meta: false },
+  toggleAutoPopup: { key: "p", ctrl: true, shift: true, alt: false, meta: false }
+};
+const ShortcutRecorder = ({ label, shortcut, onChange, isDarkMode, onRecordingChange }) => {
   const [isRecording, setIsRecording] = reactExports.useState(false);
   const [currentKeys, setCurrentKeys] = reactExports.useState([]);
   const recordState = reactExports.useRef({
@@ -18079,10 +17798,10 @@ const ShortcutRecorder = ({
   const formatShortcut = (s) => {
     if (!s || !s.key) return "None";
     if (s.doublePress) {
-      let sLabel = s.key;
-      if (sLabel === " ") sLabel = "Space";
-      if (sLabel === "Control") sLabel = "Ctrl";
-      return `${sLabel} x2`;
+      let label2 = s.key;
+      if (label2 === " ") label2 = "Space";
+      if (label2 === "Control") label2 = "Ctrl";
+      return `${label2} x2`;
     }
     const parts = [];
     if (s.ctrl) parts.push("Ctrl");
@@ -18202,898 +17921,201 @@ const ShortcutRecorder = ({
     )
   ] });
 };
-
-const SendIcon = () => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  "svg",
-  {
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 24 24",
-    fill: "currentColor",
-    className: "w-6 h-6 neon-icon-style",
-    children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" })
+const TAP_THRESHOLD = 300;
+const normalizeKey = (key) => {
+  if (key === " ") return "Space";
+  return key;
+};
+const isModifier = (key) => ["Control", "Shift", "Alt", "Meta"].includes(key);
+const getPhysicalKey = (e) => {
+  if (e.code.startsWith("Key")) return e.code.slice(3).toLowerCase();
+  if (e.code.startsWith("Digit")) return e.code.slice(5);
+  const codeMap = {
+    "Slash": "/",
+    "Backslash": "\\",
+    "Period": ".",
+    "Comma": ",",
+    "Semicolon": ";",
+    "Quote": "'",
+    "BracketLeft": "[",
+    "BracketRight": "]",
+    "Minus": "-",
+    "Equal": "=",
+    "Backquote": "`"
+  };
+  if (e.code in codeMap) {
+    return codeMap[e.code];
   }
-);
-const AskAIView = ({ context, isDarkMode }) => {
-  const [messages, setMessages] = reactExports.useState([]);
-  const [question, setQuestion] = reactExports.useState("");
-  const [isLoading, setIsLoading] = reactExports.useState(false);
-  const scrollContainerRef = reactExports.useRef(null);
-  const scrollToBottom = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: scrollContainerRef.current.scrollHeight,
-        behavior: "smooth"
-      });
-    }
-  };
-  reactExports.useEffect(() => {
-    scrollToBottom();
-  }, [messages, isLoading]);
-  reactExports.useEffect(() => {
-    setMessages([]);
-  }, [context]);
-  const handleAsk = async () => {
-    if (!question.trim()) return;
-    const userMsg = question;
-    setQuestion("");
-    setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
-    setIsLoading(true);
-    try {
-      const result = await sendMessage("ASK_AI", { context, question: userMsg });
-      setMessages((prev) => [...prev, { role: "ai", content: result }]);
-    } catch (e) {
-      setMessages((prev) => [...prev, { role: "ai", content: `Error: ${e.message}` }]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 fade-in flex flex-col h-full", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold neon-text mb-2", "data-text": "Ask AI", children: "Ask AI" }),
-    context ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700 dark:text-gray-300 italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : void 0 }, children: [
-      '"',
-      context,
-      '"'
-    ] }) }) : null,
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref: scrollContainerRef, className: "flex-grow overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar", children: [
-      messages.map((msg, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          className: `max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ${msg.role === "user" ? "text-accent rounded-br-none font-semibold flex items-center justify-center" : "bg-transparent text-gray-800 dark:text-gray-200 rounded-bl-none flex items-center"}`,
-          style: msg.role === "user" ? { border: "1px solid var(--accent-color)" } : { border: "1px solid #374151" },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "whitespace-pre-wrap", children: msg.content })
-        }
-      ) }, idx)),
-      isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-transparent rounded-2xl rounded-bl-none px-4 py-3 shadow-sm", style: { border: "1px solid var(--border-dark)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center h-4", style: { gap: "2.5px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "0ms" } }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "200ms" } }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "400ms" } })
-      ] }) }) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: (e) => {
-      e.preventDefault();
-      handleAsk();
-    }, className: "mt-auto relative ask-ai-form mb-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          type: "text",
-          value: question,
-          onChange: (e) => setQuestion(e.target.value),
-          placeholder: "Ask a question...",
-          disabled: isLoading,
-          className: "ask-ai-input",
-          autoFocus: true
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "submit",
-          disabled: !question.trim() || isLoading,
-          className: "ask-ai-send-btn",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SendIcon, {})
-        }
-      )
-    ] })
-  ] });
+  return null;
 };
-
-const HistoryView = ({
-  history,
-  handleClearHistory,
-  clearHistoryStatus,
-  isDarkMode,
-  onItemClick
-}) => {
-  const [historySearchTerm, setHistorySearchTerm] = reactExports.useState("");
-  const filteredHistory = reactExports.useMemo(() => {
-    if (!historySearchTerm) return history;
-    const lower = historySearchTerm.toLowerCase();
-    return history.filter((word) => word.toLowerCase().includes(lower));
-  }, [history, historySearchTerm]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fade-in h-full flex flex-col", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 mb-3 px-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-gray-800 dark:text-white", children: "History" }),
-        history.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            onClick: handleClearHistory,
-            disabled: clearHistoryStatus !== "idle",
-            className: "text-sm px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer",
-            style: {
-              backgroundColor: clearHistoryStatus === "done" ? "#10b981" : "transparent",
-              color: clearHistoryStatus === "done" ? "#ffffff" : "#f87171",
-              border: `1.5px solid ${clearHistoryStatus === "done" ? "#10b981" : "#f87171"}`,
-              opacity: clearHistoryStatus === "clearing" ? 0.6 : 1
-            },
-            onMouseEnter: (e) => {
-              if (clearHistoryStatus === "idle") {
-                e.currentTarget.style.backgroundColor = "rgba(248, 113, 113, 0.15)";
-              }
-            },
-            onMouseLeave: (e) => {
-              if (clearHistoryStatus === "idle") {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }
-            },
-            children: clearHistoryStatus === "idle" ? "Clear" : clearHistoryStatus === "clearing" ? "Clearing..." : "Cleared!"
-          }
-        )
-      ] }),
-      history.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "svg",
-          {
-            className: "absolute pointer-events-none",
-            style: { left: "14px", top: "50%", transform: "translateY(-50%)" },
-            xmlns: "http://www.w3.org/2000/svg",
-            width: "18",
-            height: "18",
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: isDarkMode ? "#9ca3af" : "#6b7280",
-            strokeWidth: "2",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "8" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "text",
-            value: historySearchTerm,
-            onChange: (e) => setHistorySearchTerm(e.target.value),
-            placeholder: "Find in history...",
-            className: "history-search-input",
-            style: {
-              width: "100%",
-              paddingLeft: "44px",
-              paddingRight: "16px",
-              paddingTop: "12px",
-              paddingBottom: "12px",
-              borderRadius: "24px",
-              fontSize: "14px",
-              backgroundColor: isDarkMode ? "#1f2937" : "#f3f4f6",
-              color: isDarkMode ? "#ffffff" : "#111827",
-              border: "1.5px solid rgba(75, 85, 99, 0.5)",
-              outline: "none",
-              transition: "all 0.2s ease"
-            },
-            onFocus: (e) => {
-              e.currentTarget.style.borderColor = "var(--accent-color)";
-              e.currentTarget.style.boxShadow = "0 0 12px color-mix(in srgb, var(--accent-color), transparent 60%)";
-            },
-            onBlur: (e) => {
-              e.currentTarget.style.borderColor = "rgba(75, 85, 99, 0.5)";
-              e.currentTarget.style.boxShadow = "none";
-            }
-          }
-        )
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-grow overflow-y-auto px-4 pb-4 custom-scrollbar", children: history.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-400 py-8 h-full flex flex-col justify-center items-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "mb-4 text-gray-300 dark:text-gray-600", style: { width: "72px", height: "72px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6.52 4.86A9 9 0 1 1 3.08 10.83" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M11 8v5l4 2" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-1", children: "No Recent Searches" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm", children: "Words you look up will appear here." })
-    ] }) : filteredHistory.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-400 py-8 h-full flex flex-col justify-center items-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "mb-4 text-gray-300 dark:text-gray-600", style: { width: "72px", height: "72px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "8" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-1", children: "No Matches Found" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm", children: "Try a different search term." })
-    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 pt-2", children: filteredHistory.map((word, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "button",
+const InfoBadge = ({ note, className }) => {
+  const [popupPosition, setPopupPosition] = reactExports.useState("top");
+  const containerRef = reactExports.useRef(null);
+  const handleMouseEnter = () => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const appBase = containerRef.current.closest(".app-background");
+      if (appBase) {
+        const baseRect = appBase.getBoundingClientRect();
+        const relativeTop = rect.top - baseRect.top;
+        if (relativeTop < 140) {
+          setPopupPosition("bottom");
+        } else {
+          setPopupPosition("top");
+        }
+      } else {
+        if (rect.top < 140) {
+          setPopupPosition("bottom");
+        } else {
+          setPopupPosition("top");
+        }
+      }
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: `info-badge-container ${className || ""}`,
+      ref: containerRef,
+      onMouseEnter: handleMouseEnter,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "info-badge-icon", "aria-label": "Information", children: "!" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `info-note-popup position-${popupPosition}`, children: note })
+      ]
+    }
+  );
+};
+const LanguageSelector = ({ targetLanguage, onSelect, isDarkMode }) => {
+  const [isOpen, setIsOpen] = reactExports.useState(false);
+  const [searchTerm, setSearchTerm] = reactExports.useState("");
+  const [activeIndex, setActiveIndex] = reactExports.useState(-1);
+  const dropdownRef = reactExports.useRef(null);
+  const languages = [
+    "Persian",
+    "Russian",
+    "English",
+    "German",
+    "Chinese",
+    "Arabic",
+    "Spanish",
+    "Portuguese",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Turkish"
+  ];
+  const filteredLanguages = languages.filter(
+    (lang) => lang.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  reactExports.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  reactExports.useEffect(() => {
+    setActiveIndex(-1);
+  }, [isOpen, searchTerm]);
+  const handleToggle = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) setSearchTerm("");
+      return next;
+    });
+  };
+  const handleInputMouseDown = (e) => {
+    if (!isOpen) {
+      e.stopPropagation();
+      setIsOpen(true);
+      setSearchTerm("");
+    }
+  };
+  const handleSelect = (lang) => {
+    onSelect(lang);
+    setIsOpen(false);
+    setSearchTerm("");
+  };
+  const handleKeyDown = (e) => {
+    if (!isOpen) {
+      if (e.key === "Enter" || e.key === "ArrowDown") {
+        setIsOpen(true);
+      }
+      return;
+    }
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setActiveIndex((prev) => prev < filteredLanguages.length - 1 ? prev + 1 : prev);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setActiveIndex((prev) => prev > 0 ? prev - 1 : 0);
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < filteredLanguages.length) {
+          handleSelect(filteredLanguages[activeIndex]);
+        } else if (filteredLanguages.length > 0) {
+          handleSelect(filteredLanguages[0]);
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setIsOpen(false);
+        break;
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `language-selector-container ${isOpen ? "open" : ""}`, ref: dropdownRef, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "input",
       {
-        onClick: () => onItemClick(word),
-        className: "px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center transition-all duration-200 hover:scale-110 hover:shadow-lg active:scale-95 cursor-pointer",
-        style: {
-          backgroundColor: "color-mix(in srgb, var(--accent-color), transparent 85%)",
-          color: "var(--accent-color)",
-          border: "1px solid var(--accent-color)"
-        },
-        onMouseEnter: (e) => {
-          e.currentTarget.style.backgroundColor = "var(--accent-color)";
-          e.currentTarget.style.color = "var(--on-accent-text)";
-          e.currentTarget.style.boxShadow = "0 0 15px color-mix(in srgb, var(--accent-color), transparent 40%)";
-        },
-        onMouseLeave: (e) => {
-          e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--accent-color), transparent 85%)";
-          e.currentTarget.style.color = "var(--accent-color)";
-          e.currentTarget.style.boxShadow = "none";
-        },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: word })
-      },
-      i
-    )) }) })
-  ] });
-};
-
-const PhrasebookView = ({
-  phrasebook,
-  handleClearPhrasebook,
-  clearPhrasebookStatus,
-  isDarkMode,
-  targetLanguage,
-  deletePhrase,
-  setPhrasebook,
-  speakingRelatedWord,
-  playSpecificWord,
-  handlePlayRelatedWordSound,
-  handleRelatedWordClick,
-  showPhrasebookPhonetic,
-  showPhrasebookMeaning,
-  showPhrasebookExamples,
-  showPhrasebookSynonyms,
-  showPhrasebookAntonyms,
-  showPhrasebookNouns,
-  showPhrasebookVerbs,
-  showPhrasebookAdjectives,
-  showPhrasebookAdverbs,
-  showPhrasebookHypernyms,
-  showPhrasebookHyponyms
-}) => {
-  const [phrasebookSearchTerm, setPhrasebookSearchTerm] = reactExports.useState("");
-  const [expandedPhraseId, setExpandedPhraseId] = reactExports.useState(null);
-  const filteredPhrasebook = reactExports.useMemo(() => {
-    if (!phrasebookSearchTerm) return phrasebook;
-    const lower = phrasebookSearchTerm.toLowerCase();
-    return phrasebook.filter(
-      (phrase) => phrase.word.toLowerCase().includes(lower) || phrase.translation.toLowerCase().includes(lower)
-    );
-  }, [phrasebook, phrasebookSearchTerm]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fade-in h-full flex flex-col", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 mb-3 px-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold", style: { color: isDarkMode ? "#ffffff" : "#111827" }, children: "Phrasebook" }),
-        phrasebook.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            onClick: handleClearPhrasebook,
-            disabled: clearPhrasebookStatus !== "idle",
-            className: "text-sm px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer",
-            style: {
-              backgroundColor: clearPhrasebookStatus === "done" ? "#10b981" : "transparent",
-              color: clearPhrasebookStatus === "done" ? "#ffffff" : "#f87171",
-              border: `1.5px solid ${clearPhrasebookStatus === "done" ? "#10b981" : "#f87171"}`,
-              opacity: clearPhrasebookStatus === "clearing" ? 0.6 : 1
-            },
-            onMouseEnter: (e) => {
-              if (clearPhrasebookStatus === "idle") {
-                e.currentTarget.style.backgroundColor = "rgba(248, 113, 113, 0.15)";
-              }
-            },
-            onMouseLeave: (e) => {
-              if (clearPhrasebookStatus === "idle") {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }
-            },
-            children: clearPhrasebookStatus === "idle" ? "Clear All" : clearPhrasebookStatus === "clearing" ? "Clearing..." : "Cleared!"
-          }
-        )
-      ] }),
-      phrasebook.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "svg",
-          {
-            className: "absolute pointer-events-none",
-            style: { left: "14px", top: "50%", transform: "translateY(-50%)" },
-            xmlns: "http://www.w3.org/2000/svg",
-            width: "18",
-            height: "18",
-            viewBox: "0 0 24 24",
-            fill: "none",
-            stroke: isDarkMode ? "#9ca3af" : "#6b7280",
-            strokeWidth: "2",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "8" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "text",
-            value: phrasebookSearchTerm,
-            onChange: (e) => setPhrasebookSearchTerm(e.target.value),
-            placeholder: "Find in phrasebook...",
-            className: "phrasebook-search-input",
-            style: {
-              width: "100%",
-              paddingLeft: "44px",
-              paddingRight: "16px",
-              paddingTop: "12px",
-              paddingBottom: "12px",
-              borderRadius: "24px",
-              fontSize: "14px",
-              backgroundColor: isDarkMode ? "#1f2937" : "#f3f4f6",
-              color: isDarkMode ? "#ffffff" : "#111827",
-              border: "1.5px solid rgba(75, 85, 99, 0.5)",
-              outline: "none",
-              transition: "all 0.2s ease"
-            },
-            onFocus: (e) => {
-              e.currentTarget.style.border = "1.5px solid var(--accent-color)";
-              e.currentTarget.style.boxShadow = "0 0 10px rgba(var(--accent-rgb), 0.3)";
-            },
-            onBlur: (e) => {
-              e.currentTarget.style.border = "1.5px solid rgba(75, 85, 99, 0.5)";
-              e.currentTarget.style.boxShadow = "none";
-            }
-          }
-        )
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-grow overflow-y-auto px-4 pb-4 custom-scrollbar", style: { display: "flex", flexDirection: "column", gap: "12px" }, children: filteredPhrasebook.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-400 py-8 h-full flex flex-col justify-center items-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "mb-4 text-gray-300 dark:text-gray-600", style: { width: "72px", height: "72px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-1", children: phrasebookSearchTerm ? "No Matches Found" : "Build Your Phrasebook" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm", children: phrasebookSearchTerm ? "Try a different search term." : "Save words by clicking the bookmark icon." })
-    ] }) : filteredPhrasebook.map((phrase) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        type: "text",
+        className: "language-selector-input",
+        placeholder: isOpen ? "Search languages..." : targetLanguage,
+        value: isOpen ? searchTerm : targetLanguage,
+        onMouseDown: handleInputMouseDown,
+        onChange: (e) => setSearchTerm(e.target.value),
+        onKeyDown: handleKeyDown,
+        readOnly: !isOpen
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-selector-chevron", onMouseDown: handleToggle, children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6 9l6 6 6-6" }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown custom-scrollbar", children: filteredLanguages.length > 0 ? filteredLanguages.map((lang, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: "rounded-xl overflow-hidden cursor-pointer group phrasebook-card flex-shrink-0",
-        style: {
-          backgroundColor: isDarkMode ? "#1f2937" : "#ffffff",
-          border: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb"}`,
-          transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)"
+        className: `language-dropdown-item ${lang === targetLanguage ? "selected" : ""} ${index === activeIndex ? "active" : ""}`,
+        onMouseDown: (e) => {
+          e.preventDefault();
+          handleSelect(lang);
         },
-        onMouseEnter: (e) => {
-          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
-          e.currentTarget.style.borderColor = "var(--accent-color)";
-        },
-        onMouseLeave: (e) => {
-          e.currentTarget.style.boxShadow = "none";
-          e.currentTarget.style.borderColor = isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb";
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              className: "flex items-center p-4",
-              onClick: () => setExpandedPhraseId(expandedPhraseId === phrase.id ? null : phrase.id),
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-grow min-w-0", onContextMenu: (e) => {
-                  e.preventDefault();
-                  playSpecificWord(phrase.word);
-                }, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "p",
-                    {
-                      className: `phrase-word font-bold text-lg capitalize truncate transition-colors duration-300 ${speakingRelatedWord === phrase.word ? "animate-pulse-subtle text-accent" : ""}`,
-                      style: { color: isDarkMode ? "#ffffff" : "#111827" },
-                      children: phrase.word
-                    }
-                  ),
-                  showPhrasebookPhonetic && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "p",
-                    {
-                      className: "text-sm truncate",
-                      style: { color: isDarkMode ? "#9ca3af" : "#6b7280" },
-                      children: phrase.phonetic
-                    }
-                  )
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: `flex-shrink-0 text-base px-3 max-w-[40%] ${isRTLLanguage(targetLanguage) ? "text-right" : "text-left"}`,
-                    dir: isRTLLanguage(targetLanguage) ? "rtl" : "ltr",
-                    style: {
-                      color: isDarkMode ? "#d1d5db" : "#374151",
-                      fontFamily: isRTLLanguage(targetLanguage) ? "Vazirmatn, sans-serif" : "inherit"
-                    },
-                    children: truncateText(phrase.translation, 20)
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "button",
-                  {
-                    onClick: (e) => {
-                      e.stopPropagation();
-                      deletePhrase(phrase.id);
-                      setPhrasebook((p) => p.filter((x) => x.id !== phrase.id));
-                    },
-                    className: "p-1.5 transition-all duration-200 hover:scale-125 cursor-pointer",
-                    style: { color: isDarkMode ? "#6b7280" : "#9ca3af", background: "transparent", border: "none" },
-                    onMouseEnter: (e) => {
-                      e.currentTarget.style.color = "#ef4444";
-                    },
-                    onMouseLeave: (e) => {
-                      e.currentTarget.style.color = isDarkMode ? "#6b7280" : "#9ca3af";
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" }) })
-                  }
-                )
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                overflow: "hidden",
-                maxHeight: expandedPhraseId === phrase.id ? "600px" : "0px",
-                opacity: expandedPhraseId === phrase.id ? 1 : 0,
-                transform: expandedPhraseId === phrase.id ? "translateY(0)" : "translateY(-8px)",
-                transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
-              },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  className: "px-4 pb-8 pt-3 overflow-y-auto custom-scrollbar",
-                  style: {
-                    maxHeight: "300px",
-                    borderTop: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.6)" : "#e5e7eb"}`,
-                    backgroundColor: isDarkMode ? "rgba(31, 41, 55, 0.5)" : "rgba(249, 250, 251, 0.5)"
-                  },
-                  children: [
-                    showPhrasebookMeaning && phrase.meaning && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-1 text-gray-600 dark:text-gray-400", children: "Meaning" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base leading-relaxed", style: { color: isDarkMode ? "#e5e7eb" : "#374151" }, children: phrase.meaning })
-                    ] }),
-                    showPhrasebookExamples && phrase.example && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Example" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : "#4b5563" }, children: [
-                        '"',
-                        phrase.example,
-                        '"'
-                      ] })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: `text-base leading-relaxed mb-4 ${isRTLLanguage(targetLanguage) ? "text-right" : "text-left"}`,
-                        dir: isRTLLanguage(targetLanguage) ? "rtl" : "ltr",
-                        style: {
-                          fontFamily: isRTLLanguage(targetLanguage) ? "Vazirmatn, sans-serif" : "inherit",
-                          color: isDarkMode ? "#e5e7eb" : "#374151"
-                        },
-                        children: phrase.translation
-                      }
-                    ),
-                    showPhrasebookSynonyms && phrase.synonyms && phrase.synonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Synonyms" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.synonyms.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "span",
-                        {
-                          onClick: () => handleRelatedWordClick(s),
-                          onContextMenu: (e) => {
-                            e.preventDefault();
-                            handlePlayRelatedWordSound(s);
-                          },
-                          title: `${s} (Right-click to pronounce)`,
-                          className: "px-3 rounded-full text-sm font-medium cursor-pointer word-chip-interactive",
-                          style: {
-                            paddingTop: "2px",
-                            paddingBottom: "4px",
-                            backgroundColor: "var(--accent-soft-bg)",
-                            color: "var(--accent-color)",
-                            border: "1px solid var(--accent-color)"
-                          },
-                          children: s
-                        },
-                        i
-                      )) })
-                    ] }),
-                    showPhrasebookAntonyms && phrase.antonyms && phrase.antonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Antonyms" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.antonyms.map((a, i) => {
-                        const baseColor = isDarkMode ? "#ef4444" : "#b91c1c";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(a),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(a);
-                            },
-                            title: `${a} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderWidth: "1px",
-                              borderStyle: "solid"
-                            },
-                            children: a
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookNouns && phrase.nouns && phrase.nouns.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Nouns" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.nouns.map((n, i) => {
-                        const baseColor = isDarkMode ? "#60a5fa" : "#1e40af";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(n),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(n);
-                            },
-                            title: `${n} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: n
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookVerbs && phrase.verbs && phrase.verbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Verbs" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.verbs.map((v, i) => {
-                        const baseColor = isDarkMode ? "#4ade80" : "#15803d";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(v),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(v);
-                            },
-                            title: `${v} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: v
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookAdjectives && phrase.adjectives && phrase.adjectives.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Adjectives" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.adjectives.map((adj, i) => {
-                        const baseColor = isDarkMode ? "#fbbf24" : "#b45309";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(adj),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(adj);
-                            },
-                            title: `${adj} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: adj
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookAdverbs && phrase.adverbs && phrase.adverbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Adverbs" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.adverbs.map((adv, i) => {
-                        const baseColor = isDarkMode ? "#a78bfa" : "#6b21a8";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(adv),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(adv);
-                            },
-                            title: `${adv} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: adv
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookHypernyms && phrase.hypernyms && phrase.hypernyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Hypernyms" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.hypernyms.map((hyp, i) => {
-                        const baseColor = isDarkMode ? "#2dd4bf" : "#0d9488";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(hyp),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(hyp);
-                            },
-                            title: `${hyp} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: hyp
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    showPhrasebookHyponyms && phrase.hyponyms && phrase.hyponyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Hyponyms" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.hyponyms.map((hyp, i) => {
-                        const baseColor = isDarkMode ? "#f472b6" : "#db2777";
-                        return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "span",
-                          {
-                            onClick: () => handleRelatedWordClick(hyp),
-                            onContextMenu: (e) => {
-                              e.preventDefault();
-                              handlePlayRelatedWordSound(hyp);
-                            },
-                            title: `${hyp} (Right-click to pronounce)`,
-                            className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
-                            style: {
-                              paddingTop: "2px",
-                              paddingBottom: "4px",
-                              backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
-                              borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
-                              color: baseColor,
-                              borderStyle: "solid"
-                            },
-                            children: hyp
-                          },
-                          i
-                        );
-                      }) })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-6 w-full" })
-                  ]
-                }
-              )
-            }
-          )
-        ]
+        children: (() => {
+          if (!searchTerm) return lang;
+          const index2 = lang.toLowerCase().indexOf(searchTerm.toLowerCase());
+          if (index2 === -1) return lang;
+          return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            lang.substring(0, index2),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "language-match-highlight", children: lang.substring(index2, index2 + searchTerm.length) }),
+            lang.substring(index2 + searchTerm.length)
+          ] });
+        })()
       },
-      phrase.id
-    )) })
+      lang
+    )) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "language-dropdown-empty", children: "No matching languages" }) })
   ] });
 };
-
-const playText = async (text, lang, timestamp = Date.now(), voiceTarget = "source", sourceLang = "en", targetLang = "fa", settings = {}) => {
-  return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage({
-      type: "PLAY_TTS",
-      payload: {
-        sourceText: text,
-        sourceLang: lang,
-        targetText: "",
-        targetLang: "",
-        voiceTarget: "source",
-        timestamp,
-        setting: settings
-      }
-    }, (response) => {
-      if (chrome.runtime.lastError) {
-        console.error("TTS Error:", chrome.runtime.lastError);
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve();
-      }
-    });
-  });
-};
-
-const POPUP_WIDTH = 440;
-const POPUP_HEIGHT = 580;
-const POPUP_MARGIN = 12;
-let cachedOverlayCss = null;
-let cssLoadedPromise = null;
-const loadStyles = () => {
-  if (cachedOverlayCss) {
-    return Promise.resolve(cachedOverlayCss);
-  }
-  if (cssLoadedPromise) {
-    return cssLoadedPromise;
-  }
-  const cssUrl = chrome.runtime.getURL("overlay.css");
-  const fontRegularUrl = chrome.runtime.getURL("fonts/vazirmatn-regular.woff2");
-  const fontBoldUrl = chrome.runtime.getURL("fonts/vazirmatn-bold.woff2");
-  cssLoadedPromise = fetch(cssUrl).then((res) => res.text()).then((css) => {
-    cachedOverlayCss = css.replace(/url\(['"]?fonts\/vazirmatn-regular\.woff2['"]?\)/g, `url('${fontRegularUrl}')`).replace(/url\(['"]?fonts\/vazirmatn-bold\.woff2['"]?\)/g, `url('${fontBoldUrl}')`);
-    return cachedOverlayCss;
-  }).catch((err) => {
-    console.error("Failed to load styles:", err);
-    return "";
-  });
-  return cssLoadedPromise;
-};
-const preloadStyles = () => {
-  try {
-    const fontRegularUrl = chrome.runtime.getURL("fonts/vazirmatn-regular.woff2");
-    const fontBoldUrl = chrome.runtime.getURL("fonts/vazirmatn-bold.woff2");
-    loadStyles();
-    const mainFontStyleId = "berkut-fonts";
-    if (!document.getElementById(mainFontStyleId)) {
-      const mainFontStyle = document.createElement("style");
-      mainFontStyle.id = mainFontStyleId;
-      mainFontStyle.textContent = `
-                @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
-                @font-face { font-family: 'Vazirmatn'; src: url('${fontRegularUrl}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-                @font-face { font-family: 'Vazirmatn'; src: url('${fontBoldUrl}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-                @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-                @keyframes neon-border-dance { to { --angle: 360deg; } }
-                @keyframes neon-flow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-                @keyframes neon-pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
-            `;
-      document.head.appendChild(mainFontStyle);
-    }
-  } catch (e) {
-    console.error("Error in preloadStyles:", e);
-  }
-};
-preloadStyles();
-try {
-  const wakeUpPromise = typeof chrome !== "undefined" && chrome.runtime?.sendMessage ? chrome.runtime.sendMessage({ type: "WAKE_UP" }) : null;
-  if (wakeUpPromise && typeof wakeUpPromise.catch === "function") {
-    wakeUpPromise.catch(() => {
-    });
-  }
-} catch (e) {
-}
-async function sendMessage(type, payload) {
-  return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage({ type, payload }, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
-        return;
-      }
-      if (response?.success) {
-        resolve(response.data);
-      } else {
-        reject(new Error(response?.error || "Unknown error"));
-      }
-    });
-  });
-}
-let popupScrollLockCleanup = null;
-let cachedAutoPopup = false;
-if (typeof chrome !== "undefined" && chrome.storage) {
-  chrome.storage.local.get(["dictionaryAutoPopup"], (result) => {
-    if (result && result.dictionaryAutoPopup !== void 0) {
-      cachedAutoPopup = result.dictionaryAutoPopup;
-    }
-  });
-  chrome.storage.onChanged.addListener((changes, areaName) => {
-    if (areaName === "local" && changes.dictionaryAutoPopup) {
-      cachedAutoPopup = changes.dictionaryAutoPopup.newValue;
-    }
-  });
-}
-async function getAllPhrases() {
-  return sendMessage("GET_ALL_PHRASES");
-}
-async function addPhrase(phrase) {
-  return sendMessage("ADD_PHRASE", { phrase });
-}
-async function deletePhrase(id) {
-  return sendMessage("DELETE_PHRASE", { id });
-}
-async function clearAllPhrases() {
-  return sendMessage("CLEAR_ALL_PHRASES");
-}
-async function getDictionaryEntry(word) {
-  return sendMessage("GET_DICTIONARY_ENTRY", { word });
-}
-async function addDictionaryEntry(entry) {
-  return sendMessage("ADD_DICTIONARY_ENTRY", { entry });
-}
-async function clearAllDictionaryEntries() {
-  return sendMessage("CLEAR_DICTIONARY_CACHE");
-}
-async function clearAllPronunciations() {
-  return Promise.resolve();
-}
-let popupContainer = null;
-let triggerButton = null;
-let root = null;
-const removePopup = () => {
-  if (popupContainer) {
-    popupScrollLockCleanup?.();
-    popupScrollLockCleanup = null;
-    popupContainer.style.opacity = "0";
-    popupContainer.style.transform = "scale(0.95)";
-    const containerToRemove = popupContainer;
-    const rootToRemove = root;
-    popupContainer = null;
-    root = null;
-    setTimeout(() => {
-      if (rootToRemove) {
-        rootToRemove.unmount();
-      }
-      if (containerToRemove && containerToRemove.parentNode) {
-        containerToRemove.remove();
-      }
-    }, 350);
-  }
-};
-const removeTrigger = () => {
-  if (triggerButton) {
-    triggerButton.style.opacity = "0";
-    triggerButton.style.transform = "scale(0.95)";
-    const triggerToRemove = triggerButton;
-    triggerButton = null;
-    setTimeout(() => {
-      if (triggerToRemove && triggerToRemove.parentNode) {
-        triggerToRemove.remove();
-      }
-    }, 350);
-  }
-};
-const removeAll = () => {
-  removePopup();
-  removeTrigger();
-};
-const TAP_THRESHOLD = 300;
 const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dictionary", initialGlassEnabled, initialDarkMode, initialVisualEffectsEnabled, initialTheme }) => {
   const [wordData, setWordData] = reactExports.useState(null);
   const [passageData, setPassageData] = reactExports.useState(null);
   const [isLoading, setIsLoading] = reactExports.useState(!!initialSearchTerm);
   const [error, setError] = reactExports.useState(null);
+  const [phrasebookSearchTerm, setPhrasebookSearchTerm] = reactExports.useState("");
+  const [expandedPhraseId, setExpandedPhraseId] = reactExports.useState(null);
   const [searchTerm, setSearchTerm] = reactExports.useState(initialSearchTerm || "");
-  const hasInitializedSearch = reactExports.useRef(false);
   const [suggestion, setSuggestion] = reactExports.useState(null);
   const [speakingRelatedWord, setSpeakingRelatedWord] = reactExports.useState(null);
   const [activeView, setActiveView] = reactExports.useState(initialView);
@@ -19130,20 +18152,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
   const [showPhrasebookAntonyms, setShowPhrasebookAntonyms] = reactExports.useState(true);
   const [showPhrasebookHypernyms, setShowPhrasebookHypernyms] = reactExports.useState(true);
   const [showPhrasebookHyponyms, setShowPhrasebookHyponyms] = reactExports.useState(true);
-  const [uiMode, setUiMode] = reactExports.useState("classic");
-  const [showMinNouns, setShowMinNouns] = reactExports.useState(true);
-  const [showMinVerbs, setShowMinVerbs] = reactExports.useState(true);
-  const [showMinAdjectives, setShowMinAdjectives] = reactExports.useState(true);
-  const [showMinAdverbs, setShowMinAdverbs] = reactExports.useState(true);
-  const [showMinExamples, setShowMinExamples] = reactExports.useState(true);
-  const [showMinPhonetic, setShowMinPhonetic] = reactExports.useState(true);
-  const [showMinMeaning, setShowMinMeaning] = reactExports.useState(true);
-  const [showMinSynonyms, setShowMinSynonyms] = reactExports.useState(true);
-  const [showMinAntonyms, setShowMinAntonyms] = reactExports.useState(true);
-  const [showMinHypernyms, setShowMinHypernyms] = reactExports.useState(true);
-  const [showMinHyponyms, setShowMinHyponyms] = reactExports.useState(true);
-  const [showMinSummary, setShowMinSummary] = reactExports.useState(true);
-  const [showMinKeyConcepts, setShowMinKeyConcepts] = reactExports.useState(true);
   const [shortcuts, setShortcuts] = reactExports.useState(defaultShortcuts);
   const [settingsGroupState, setSettingsGroupState] = reactExports.useState({});
   const toggleSettingsGroup = (group) => {
@@ -19162,7 +18170,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
   const [isRecordingAnyShortcut, setIsRecordingAnyShortcut] = reactExports.useState(false);
   const [autoPopup, setAutoPopup] = reactExports.useState(false);
   const [playbackRate, setPlaybackRate] = reactExports.useState(1);
-  const [translationEngine, setTranslationEngine] = reactExports.useState("cerebras");
   const [apiKey, setApiKey] = reactExports.useState("");
   const [cerebrasModel, setCerebrasModel] = reactExports.useState("llama3.1-8b");
   const [cerebrasModels, setCerebrasModels] = reactExports.useState(["llama3.1-8b", "llama3.1-70b"]);
@@ -19170,7 +18177,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
   const [modelsError, setModelsError] = reactExports.useState("");
   const [cartesiaKey, setCartesiaKey] = reactExports.useState("");
   const [ttsVoiceEn, setTtsVoiceEn] = reactExports.useState("GoogleTranslateTTS");
-  const [ttsVoiceFa, setTtsVoiceFa] = reactExports.useState("BingTTS_fa-IR-DilaraNeural");
+  const [ttsVoiceFa, setTtsVoiceFa] = reactExports.useState("GoogleTranslateTTS");
   const [ttsVoiceRu, setTtsVoiceRu] = reactExports.useState("GoogleTranslateTTS");
   const [availableVoices, setAvailableVoices] = reactExports.useState([]);
   const [focusedVoiceLang, setFocusedVoiceLang] = reactExports.useState(null);
@@ -19199,6 +18206,13 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
   reactExports.useEffect(() => {
     phrasebookRef.current = phrasebook;
   }, [phrasebook]);
+  const filteredPhrasebook = reactExports.useMemo(() => {
+    if (!phrasebookSearchTerm) return phrasebook;
+    const lower = phrasebookSearchTerm.toLowerCase();
+    return phrasebook.filter(
+      (p) => p.word.toLowerCase().includes(lower) || p.translation && p.translation.toLowerCase().includes(lower)
+    );
+  }, [phrasebook, phrasebookSearchTerm]);
   const fetchModelsList = reactExports.useCallback(async () => {
     setLoadingModels(true);
     setModelsError("");
@@ -19228,7 +18242,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
   }, [activeView, apiKey, fetchModelsList]);
   reactExports.useEffect(() => {
     const loadSettings = async () => {
-      const [t, dm, ve, gm, fs, ap, pr, hist, key, cKey, vEn, vFa, vRu, n, v, adj, adv, ex, phon, mean, syn, ant, pbN, pbV, pbAdj, pbAdv, pbEx, pbPhon, pbMean, pbSyn, pbAnt, hyp, hypo, pbHyp, pbHypo, glassBlurPct, tgtLang, sum, kc, transEngine] = await Promise.all([
+      const [t, dm, ve, gm, fs, ap, pr, hist, key, cKey, vEn, vFa, vRu, n, v, adj, adv, ex, phon, mean, syn, ant, pbN, pbV, pbAdj, pbAdv, pbEx, pbPhon, pbMean, pbSyn, pbAnt, hyp, hypo, pbHyp, pbHypo, glassBlurPct, tgtLang, sum, kc] = await Promise.all([
         storage.get("dictionaryTheme", "indigo"),
         storage.get("dictionaryDarkMode", true),
         storage.get("dictionaryVisualEffects", true),
@@ -19240,7 +18254,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
         storage.get("cerebrasApiKey", ""),
         storage.get("cartesiaApiKey", ""),
         storage.get("ttsVoice_en", "GoogleTranslateTTS"),
-        storage.get("ttsVoice_fa", "BingTTS_fa-IR-DilaraNeural"),
+        storage.get("ttsVoice_fa", "GoogleTranslateTTS"),
         storage.get("ttsVoice_ru", "GoogleTranslateTTS"),
         storage.get("showNouns", true),
         storage.get("showVerbs", true),
@@ -19267,8 +18281,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
         storage.get("dictionaryGlassBlur", 40),
         storage.get("dictionaryTargetLanguage", "English"),
         storage.get("showSummary", true),
-        storage.get("showKeyConcepts", true),
-        storage.get("translationEngine", "cerebras")
+        storage.get("showKeyConcepts", true)
       ]);
       setTheme(t);
       setIsDarkMode(dm);
@@ -19307,37 +18320,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
       setShowHyponyms(hypo !== void 0 ? hypo : true);
       if (typeof glassBlurPct === "number") setGlassBlurPercent(glassBlurPct);
       if (tgtLang) setTargetLanguage(tgtLang);
-      setTranslationEngine(transEngine === "google" ? "google" : "cerebras");
-      const [uMode, minN, minV, minAdj, minAdv, minEx, minPhon, minMean, minSyn, minAnt, minHyp, minHypo, minSum, minKC] = await Promise.all([
-        storage.get("dictionaryUiMode", "classic"),
-        storage.get("showMinNouns", true),
-        storage.get("showMinVerbs", true),
-        storage.get("showMinAdjectives", true),
-        storage.get("showMinAdverbs", true),
-        storage.get("showMinExamples", true),
-        storage.get("showMinPhonetic", true),
-        storage.get("showMinMeaning", true),
-        storage.get("showMinSynonyms", true),
-        storage.get("showMinAntonyms", true),
-        storage.get("showMinHypernyms", true),
-        storage.get("showMinHyponyms", true),
-        storage.get("showMinSummary", true),
-        storage.get("showMinKeyConcepts", true)
-      ]);
-      setUiMode(uMode === "minimal" ? "minimal" : "classic");
-      setShowMinNouns(minN);
-      setShowMinVerbs(minV);
-      setShowMinAdjectives(minAdj);
-      setShowMinAdverbs(minAdv);
-      setShowMinExamples(minEx);
-      setShowMinPhonetic(minPhon);
-      setShowMinMeaning(minMean);
-      setShowMinSynonyms(minSyn);
-      setShowMinAntonyms(minAnt);
-      setShowMinHypernyms(minHyp);
-      setShowMinHyponyms(minHypo);
-      setShowMinSummary(minSum);
-      setShowMinKeyConcepts(minKC);
       const storedModel = await storage.get("cerebrasModel", "llama3.1-8b");
       setCerebrasModel(storedModel);
       const phrases = await getAllPhrases();
@@ -19440,25 +18422,17 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     });
   }, [theme, isDarkMode, visualEffectsEnabled, glassmorphismEnabled, glassBlurPercent, fontSize, containerElement, settingsLoaded]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryTheme", theme);
-    }
-  }, [theme, settingsLoaded]);
+    storage.set("dictionaryTheme", theme);
+  }, [theme]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryDarkMode", isDarkMode);
-    }
-  }, [isDarkMode, settingsLoaded]);
+    storage.set("dictionaryDarkMode", isDarkMode);
+  }, [isDarkMode]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryVisualEffects", visualEffectsEnabled);
-    }
-  }, [visualEffectsEnabled, settingsLoaded]);
+    storage.set("dictionaryVisualEffects", visualEffectsEnabled);
+  }, [visualEffectsEnabled]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryGlassBlur", glassBlurPercent);
-    }
-  }, [glassBlurPercent, settingsLoaded]);
+    storage.set("dictionaryGlassBlur", glassBlurPercent);
+  }, [glassBlurPercent]);
   reactExports.useEffect(() => {
     if (!isBlurFocusMode) return;
     const handleKeyDown = (e) => {
@@ -19472,246 +18446,107 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     };
   }, [isBlurFocusMode]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryFontSize", fontSize);
-    }
-  }, [fontSize, settingsLoaded]);
+    storage.set("dictionaryFontSize", fontSize);
+  }, [fontSize]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryAutoPopup", autoPopup);
-    }
-  }, [autoPopup, settingsLoaded]);
+    storage.set("dictionaryAutoPopup", autoPopup);
+  }, [autoPopup]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryPlaybackRate", playbackRate);
-    }
-  }, [playbackRate, settingsLoaded]);
+    storage.set("dictionaryPlaybackRate", playbackRate);
+  }, [playbackRate]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryHistory", history);
-    }
-  }, [history, settingsLoaded]);
+    storage.set("dictionaryHistory", history);
+  }, [history]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("ttsVoice_en", ttsVoiceEn);
-    }
-  }, [ttsVoiceEn, settingsLoaded]);
+    storage.set("ttsVoice_en", ttsVoiceEn);
+  }, [ttsVoiceEn]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("ttsVoice_fa", ttsVoiceFa);
-    }
-  }, [ttsVoiceFa, settingsLoaded]);
+    storage.set("ttsVoice_fa", ttsVoiceFa);
+  }, [ttsVoiceFa]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("ttsVoice_ru", ttsVoiceRu);
-    }
-  }, [ttsVoiceRu, settingsLoaded]);
+    storage.set("ttsVoice_fa", ttsVoiceFa);
+  }, [ttsVoiceFa]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showNouns", showNouns);
-    }
-  }, [showNouns, settingsLoaded]);
+    storage.set("ttsVoice_ru", ttsVoiceRu);
+  }, [ttsVoiceRu]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showVerbs", showVerbs);
-    }
-  }, [showVerbs, settingsLoaded]);
+    storage.set("showNouns", showNouns);
+  }, [showNouns]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showAdjectives", showAdjectives);
-    }
-  }, [showAdjectives, settingsLoaded]);
+    storage.set("showVerbs", showVerbs);
+  }, [showVerbs]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showAdverbs", showAdverbs);
-    }
-  }, [showAdverbs, settingsLoaded]);
+    storage.set("showAdjectives", showAdjectives);
+  }, [showAdjectives]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showExamples", showExamples);
-    }
-  }, [showExamples, settingsLoaded]);
+    storage.set("showAdverbs", showAdverbs);
+  }, [showAdverbs]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhonetic", showPhonetic);
-    }
-  }, [showPhonetic, settingsLoaded]);
+    storage.set("showAdverbs", showAdverbs);
+  }, [showAdverbs]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMeaning", showMeaning);
-    }
-  }, [showMeaning, settingsLoaded]);
+    storage.set("showExamples", showExamples);
+  }, [showExamples]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showSynonyms", showSynonyms);
-    }
-  }, [showSynonyms, settingsLoaded]);
+    storage.set("showPhonetic", showPhonetic);
+  }, [showPhonetic]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showAntonyms", showAntonyms);
-    }
-  }, [showAntonyms, settingsLoaded]);
+    storage.set("showMeaning", showMeaning);
+  }, [showMeaning]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showHypernyms", showHypernyms);
-    }
-  }, [showHypernyms, settingsLoaded]);
+    storage.set("showSynonyms", showSynonyms);
+  }, [showSynonyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showHyponyms", showHyponyms);
-    }
-  }, [showHyponyms, settingsLoaded]);
+    storage.set("showAntonyms", showAntonyms);
+  }, [showAntonyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showSummary", showSummary);
-    }
-  }, [showSummary, settingsLoaded]);
+    storage.set("showHypernyms", showHypernyms);
+  }, [showHypernyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showKeyConcepts", showKeyConcepts);
-    }
-  }, [showKeyConcepts, settingsLoaded]);
+    storage.set("showHyponyms", showHyponyms);
+  }, [showHyponyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookNouns", showPhrasebookNouns);
-    }
-  }, [showPhrasebookNouns, settingsLoaded]);
+    storage.set("showSummary", showSummary);
+  }, [showSummary]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookVerbs", showPhrasebookVerbs);
-    }
-  }, [showPhrasebookVerbs, settingsLoaded]);
+    storage.set("showKeyConcepts", showKeyConcepts);
+  }, [showKeyConcepts]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookAdjectives", showPhrasebookAdjectives);
-    }
-  }, [showPhrasebookAdjectives, settingsLoaded]);
+    storage.set("showPhrasebookNouns", showPhrasebookNouns);
+  }, [showPhrasebookNouns]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookAdverbs", showPhrasebookAdverbs);
-    }
-  }, [showPhrasebookAdverbs, settingsLoaded]);
+    storage.set("showPhrasebookVerbs", showPhrasebookVerbs);
+  }, [showPhrasebookVerbs]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookExamples", showPhrasebookExamples);
-    }
-  }, [showPhrasebookExamples, settingsLoaded]);
+    storage.set("showPhrasebookAdjectives", showPhrasebookAdjectives);
+  }, [showPhrasebookAdjectives]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookPhonetic", showPhrasebookPhonetic);
-    }
-  }, [showPhrasebookPhonetic, settingsLoaded]);
+    storage.set("showPhrasebookAdverbs", showPhrasebookAdverbs);
+  }, [showPhrasebookAdverbs]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookMeaning", showPhrasebookMeaning);
-    }
-  }, [showPhrasebookMeaning, settingsLoaded]);
+    storage.set("showPhrasebookExamples", showPhrasebookExamples);
+  }, [showPhrasebookExamples]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookSynonyms", showPhrasebookSynonyms);
-    }
-  }, [showPhrasebookSynonyms, settingsLoaded]);
+    storage.set("showPhrasebookPhonetic", showPhrasebookPhonetic);
+  }, [showPhrasebookPhonetic]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookAntonyms", showPhrasebookAntonyms);
-    }
-  }, [showPhrasebookAntonyms, settingsLoaded]);
+    storage.set("showPhrasebookMeaning", showPhrasebookMeaning);
+  }, [showPhrasebookMeaning]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookHypernyms", showPhrasebookHypernyms);
-    }
-  }, [showPhrasebookHypernyms, settingsLoaded]);
+    storage.set("showPhrasebookSynonyms", showPhrasebookSynonyms);
+  }, [showPhrasebookSynonyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showPhrasebookHyponyms", showPhrasebookHyponyms);
-    }
-  }, [showPhrasebookHyponyms, settingsLoaded]);
+    storage.set("showPhrasebookAntonyms", showPhrasebookAntonyms);
+  }, [showPhrasebookAntonyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("dictionaryUiMode", uiMode);
-    }
-  }, [uiMode, settingsLoaded]);
+    storage.set("showPhrasebookHypernyms", showPhrasebookHypernyms);
+  }, [showPhrasebookHypernyms]);
   reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinNouns", showMinNouns);
-    }
-  }, [showMinNouns, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinVerbs", showMinVerbs);
-    }
-  }, [showMinVerbs, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinAdjectives", showMinAdjectives);
-    }
-  }, [showMinAdjectives, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinAdverbs", showMinAdverbs);
-    }
-  }, [showMinAdverbs, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinExamples", showMinExamples);
-    }
-  }, [showMinExamples, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinPhonetic", showMinPhonetic);
-    }
-  }, [showMinPhonetic, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinMeaning", showMinMeaning);
-    }
-  }, [showMinMeaning, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinSynonyms", showMinSynonyms);
-    }
-  }, [showMinSynonyms, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinAntonyms", showMinAntonyms);
-    }
-  }, [showMinAntonyms, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinHypernyms", showMinHypernyms);
-    }
-  }, [showMinHypernyms, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinHyponyms", showMinHyponyms);
-    }
-  }, [showMinHyponyms, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinSummary", showMinSummary);
-    }
-  }, [showMinSummary, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (settingsLoaded) {
-      storage.set("showMinKeyConcepts", showMinKeyConcepts);
-    }
-  }, [showMinKeyConcepts, settingsLoaded]);
-  reactExports.useEffect(() => {
-    if (popupContainer) {
-      const isMinimal = uiMode === "minimal";
-      const width = isMinimal ? 360 : 440;
-      const height = isMinimal ? 320 : 580;
-      popupContainer.style.width = `${width}px`;
-      popupContainer.style.height = `${height}px`;
-      popupContainer.style.borderRadius = "16px";
-    }
-  }, [uiMode]);
+    storage.set("showPhrasebookHyponyms", showPhrasebookHyponyms);
+  }, [showPhrasebookHyponyms]);
   const handleSearch = reactExports.useCallback(async (overrideTerm, forceRefresh = false) => {
     const term = (overrideTerm || searchTerm).trim();
     if (!term) return;
-    if (overrideTerm) {
-      setSearchTerm(overrideTerm);
-    }
     setIsLoading(true);
     setError(null);
     setWordData(null);
@@ -19787,8 +18622,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     }
   }, [searchTerm, targetLanguage]);
   reactExports.useEffect(() => {
-    if (settingsLoaded && initialSearchTerm && initialView === "dictionary" && !hasInitializedSearch.current) {
-      hasInitializedSearch.current = true;
+    if (settingsLoaded && initialSearchTerm && initialView === "dictionary") {
       handleSearch(initialSearchTerm);
     }
   }, [initialSearchTerm, initialView, settingsLoaded, handleSearch]);
@@ -19842,36 +18676,12 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     try {
       setIsFetchingAudio(true);
       setIsSpeaking(true);
-      let langCode = "fa";
-      let voiceSetting = ttsVoiceFa;
-      const targetLower = (targetLanguage || "").toLowerCase();
-      if (targetLower === "english") {
-        langCode = "en";
-        voiceSetting = ttsVoiceEn;
-      } else if (targetLower === "russian") {
-        langCode = "ru";
-        voiceSetting = ttsVoiceRu;
-      } else if (targetLower === "persian") {
-        langCode = "fa";
-        voiceSetting = ttsVoiceFa;
-      } else {
-        if (/[\u0600-\u06FF]/.test(wordData.translation)) {
-          langCode = "fa";
-          voiceSetting = ttsVoiceFa;
-        } else if (/[\u0400-\u04FF]/.test(wordData.translation)) {
-          langCode = "ru";
-          voiceSetting = ttsVoiceRu;
-        } else {
-          langCode = "en";
-          voiceSetting = ttsVoiceEn;
-        }
-      }
       const settings = {
-        [`ttsVoice_${langCode}`]: voiceSetting,
+        ttsVoice_fa: ttsVoiceFa,
         voiceVolume: 1,
         voiceRate: playbackRate
       };
-      await playText(wordData.translation, langCode, Date.now(), "source", "en", langCode, settings);
+      await playText(wordData.translation, "fa", Date.now(), "source", "en", "fa", settings);
       setTimeout(() => {
         setIsSpeaking(false);
       }, 2e3);
@@ -19882,12 +18692,8 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     } finally {
       setIsFetchingAudio(false);
     }
-  }, [wordData, isFetchingAudio, ttsVoiceEn, ttsVoiceFa, ttsVoiceRu, targetLanguage, playbackRate]);
+  }, [wordData, isFetchingAudio, ttsVoiceFa, playbackRate]);
   const handleRelatedWordClick = reactExports.useCallback((word) => {
-    setSearchTerm(word);
-    handleSearch(word);
-  }, [handleSearch]);
-  const handleHistoryItemClick = reactExports.useCallback((word) => {
     setSearchTerm(word);
     handleSearch(word);
   }, [handleSearch]);
@@ -20339,11 +19145,11 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
         showMeaning && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Meaning" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2", style: { color: "#9ca3af" }, children: "Meaning" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-800 dark:text-gray-200 leading-relaxed", children: wordData.meaning })
         ] }),
         showExamples && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Example" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2", style: { color: "#9ca3af" }, children: "Example" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700 dark:text-gray-300 italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : void 0 }, children: [
             '"',
             wordData.example,
@@ -20351,7 +19157,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Translation" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2", style: { color: "#9ca3af" }, children: "Translation" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "p",
             {
@@ -20537,270 +19343,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
       }
     ) });
   }
-  const renderMinimalView = () => {
-    if (isLoading) {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center items-center h-full", style: { minHeight: "160px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "loading-spinner" }) });
-    }
-    if (error) {
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-red-500 p-4 bg-red-500/10 rounded-xl h-full flex flex-col items-center justify-center", style: { minHeight: "160px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", className: "mb-2 opacity-80", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "10" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "12", y1: "8", x2: "12", y2: "12" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium", children: error })
-      ] });
-    }
-    if (passageData) {
-      const isTargetRTL = isRTLLanguage(targetLanguage);
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fade-in space-y-4 text-left select-text", style: { contentVisibility: "auto" }, children: [
-        showMinSummary && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Summary" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-800 dark:text-gray-200 text-sm leading-relaxed", children: passageData.summary })
-        ] }),
-        showMinKeyConcepts && passageData.keyConcepts && passageData.keyConcepts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Key Concepts" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-1.5", children: passageData.keyConcepts.map((concept, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "px-2.5 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold border border-accent/20", children: concept }, i)) })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Translation" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "p",
-            {
-              className: `text-gray-800 dark:text-gray-200 text-sm leading-relaxed ${isTargetRTL ? "text-right" : "text-left"}`,
-              dir: isTargetRTL ? "rtl" : "ltr",
-              style: { fontFamily: isTargetRTL ? "Vazirmatn, sans-serif" : "inherit" },
-              children: passageData.summaryTranslation
-            }
-          )
-        ] })
-      ] });
-    }
-    if (wordData) {
-      const isTargetRTL = isRTLLanguage(targetLanguage);
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fade-in space-y-4 text-left select-text", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center pb-2 border-b border-gray-200/10", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-xl font-bold text-gray-900 dark:text-white capitalize truncate max-w-[220px]", title: wordData.word, children: wordData.word }),
-            showMinPhonetic && wordData.phonetic && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-mono text-gray-400 dark:text-gray-500 mt-0.5", children: wordData.phonetic })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 flex items-center space-x-1 text-gray-600 dark:text-gray-400", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: handlePlaySound,
-                "aria-label": "Play pronunciation",
-                title: "Play pronunciation",
-                className: `p-2 rounded-full transition-all duration-200 ease-in-out header-icon-btn ${isSpeaking ? "opacity-50" : ""}`,
-                style: { background: "transparent", border: "none", boxShadow: "none", cursor: "pointer" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "svg",
-                  {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 24 24",
-                    fill: "currentColor",
-                    stroke: "currentColor",
-                    strokeWidth: "2.5",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    className: `w-6 h-6 neon-icon-style ${isSpeaking ? "opacity-50" : ""}`,
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M8 5v14l11-7z" })
-                  }
-                )
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: handleAddToPhrasebook,
-                "aria-label": isWordInPhrasebook ? "Remove from Phrasebook" : "Save to Phrasebook",
-                title: isWordInPhrasebook ? "Remove from Phrasebook" : "Save to Phrasebook",
-                className: `p-2 rounded-full transition-all duration-200 ease-in-out header-icon-btn ${isWordInPhrasebook ? "text-accent" : ""}`,
-                style: { background: "transparent", border: "none", boxShadow: "none", cursor: "pointer" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "22", viewBox: "0 0 24 24", fill: isWordInPhrasebook ? "currentColor" : "none", stroke: "currentColor", strokeWidth: "2", className: "neon-icon-style", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" }) })
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: handleCopyToClipboard,
-                "aria-label": "Copy to clipboard",
-                title: "Copy to clipboard",
-                className: `p-2 rounded-full transition-all duration-200 ease-in-out header-icon-btn ${isCopied ? "text-green-500" : ""}`,
-                style: { background: "transparent", border: "none", boxShadow: "none", cursor: "pointer" },
-                children: isCopied ? /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "22", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", className: "text-green-500", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M20 6 9 17l-5-5" }) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "22", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", className: "neon-icon-style", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" })
-                ] })
-              }
-            )
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6 pr-1", children: [
-          showMinMeaning && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Meaning" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-800 dark:text-gray-200 leading-relaxed", children: wordData.meaning })
-          ] }),
-          showMinExamples && wordData.example && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Example" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700 dark:text-gray-300 italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : void 0 }, children: [
-              '"',
-              wordData.example,
-              '"'
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-2 text-gray-600 dark:text-gray-400", children: "Translation" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: `text-gray-800 dark:text-gray-200 text-lg ${isTargetRTL ? "text-right" : "text-left"}`,
-                dir: isTargetRTL ? "rtl" : "ltr",
-                style: { fontFamily: isTargetRTL ? "Vazirmatn, sans-serif" : "inherit" },
-                children: wordData.translation
-              }
-            )
-          ] }),
-          showMinSynonyms && wordData.synonyms && wordData.synonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Synonyms",
-              words: wordData.synonyms,
-              translations: wordData.synonymsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinAntonyms && wordData.antonyms && wordData.antonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Antonyms",
-              words: wordData.antonyms,
-              translations: wordData.antonymsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinNouns && wordData.nouns && wordData.nouns.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Nouns",
-              words: wordData.nouns,
-              translations: wordData.nounsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinVerbs && wordData.verbs && wordData.verbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Verbs",
-              words: wordData.verbs,
-              translations: wordData.verbsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinAdjectives && wordData.adjectives && wordData.adjectives.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Adjectives",
-              words: wordData.adjectives,
-              translations: wordData.adjectivesTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinAdverbs && wordData.adverbs && wordData.adverbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Adverbs",
-              words: wordData.adverbs,
-              translations: wordData.adverbsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinHypernyms && wordData.hypernyms && wordData.hypernyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Hypernyms",
-              words: wordData.hypernyms,
-              translations: wordData.hypernymsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          ),
-          showMinHyponyms && wordData.hyponyms && wordData.hyponyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            RelatedWords,
-            {
-              title: "Hyponyms",
-              words: wordData.hyponyms,
-              translations: wordData.hyponymsTranslation,
-              onPlayPronunciation: handlePlayRelatedWordSound,
-              speakingWord: speakingRelatedWord,
-              onWordClick: handleRelatedWordClick,
-              isDarkMode,
-              targetLanguage
-            }
-          )
-        ] })
-      ] });
-    }
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-500 flex flex-col items-center justify-center h-full px-4 py-8 select-none", style: { minHeight: "160px" }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold neon-text leading-none pb-1", "data-text": "Berkut", children: "Berkut" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-2", children: "Minimal Mode Active" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-gray-400 dark:text-gray-600 mt-1", children: "Double click to return to Classic mode" })
-    ] });
-  };
-  if (uiMode === "minimal") {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: `w-full h-full neon-border rounded-2xl ${isDarkMode ? "dark" : ""}`,
-        onDoubleClick: () => {
-          setUiMode("classic");
-          setActiveView("dictionary");
-          storage.set("dictionaryUiMode", "classic");
-        },
-        title: "Double click to switch to Classic UI mode",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: `w-full h-full font-sans flex flex-col app-background rounded-[calc(1rem-2px)] overflow-hidden ${isDarkMode ? "dark" : ""}`,
-            style: {
-              fontFamily: "var(--font-family-main)",
-              "--glass-blur": `${(4 + glassBlurPercent / 100 * 20).toFixed(1)}px`,
-              "--glass-opacity": (0.25 + glassBlurPercent / 100 * 0.6).toFixed(2)
-            },
-            "data-drag-handle": "true",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-grow overflow-y-auto p-4 custom-scrollbar berkut-scroll-contain", children: renderMinimalView() })
-          }
-        )
-      }
-    );
-  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `w-full h-full neon-border rounded-2xl ${isDarkMode ? "dark" : ""}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -20833,7 +19375,7 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
             /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "6", y1: "6", x2: "18", y2: "18" })
           ] }) })
         ] }),
-        activeView === "dictionary" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-4 mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative neon-search-bar", style: { backgroundColor: isDarkMode ? "#1F2937" : "#ffffff" }, children: [
+        activeView !== "settings" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-4 mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative neon-search-bar", style: { backgroundColor: isDarkMode ? "#1F2937" : "#ffffff" }, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { className: "search-icon", xmlns: "http://www.w3.org/2000/svg", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "8" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
@@ -20860,43 +19402,512 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "flex-grow overflow-y-auto py-4 berkut-scroll-contain", children: [
           activeView === "dictionary" && renderDictionaryView(),
-          activeView === "history" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            HistoryView,
-            {
-              history,
-              handleClearHistory,
-              clearHistoryStatus,
-              isDarkMode,
-              onItemClick: handleHistoryItemClick
-            }
-          ),
-          activeView === "phrasebook" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            PhrasebookView,
-            {
-              phrasebook,
-              handleClearPhrasebook,
-              clearPhrasebookStatus,
-              isDarkMode,
-              targetLanguage,
-              deletePhrase,
-              setPhrasebook,
-              speakingRelatedWord: speakingRelatedWord || "",
-              playSpecificWord,
-              handlePlayRelatedWordSound,
-              handleRelatedWordClick,
-              showPhrasebookPhonetic,
-              showPhrasebookMeaning,
-              showPhrasebookExamples,
-              showPhrasebookSynonyms,
-              showPhrasebookAntonyms,
-              showPhrasebookNouns,
-              showPhrasebookVerbs,
-              showPhrasebookAdjectives,
-              showPhrasebookAdverbs,
-              showPhrasebookHypernyms,
-              showPhrasebookHyponyms
-            }
-          ),
+          activeView === "history" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fade-in h-full flex flex-col", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 flex justify-between items-center mb-4 px-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-gray-800 dark:text-white", children: "History" }),
+              history.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  onClick: handleClearHistory,
+                  disabled: clearHistoryStatus !== "idle",
+                  className: "text-sm px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer",
+                  style: {
+                    backgroundColor: clearHistoryStatus === "done" ? "#10b981" : "transparent",
+                    color: clearHistoryStatus === "done" ? "#ffffff" : "#f87171",
+                    border: `1.5px solid ${clearHistoryStatus === "done" ? "#10b981" : "#f87171"}`,
+                    opacity: clearHistoryStatus === "clearing" ? 0.6 : 1
+                  },
+                  onMouseEnter: (e) => {
+                    if (clearHistoryStatus === "idle") {
+                      e.currentTarget.style.backgroundColor = "rgba(248, 113, 113, 0.15)";
+                    }
+                  },
+                  onMouseLeave: (e) => {
+                    if (clearHistoryStatus === "idle") {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }
+                  },
+                  children: clearHistoryStatus === "idle" ? "Clear" : clearHistoryStatus === "clearing" ? "Clearing..." : "Cleared!"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-grow overflow-y-auto px-4", children: history.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-400 py-8 h-full flex flex-col justify-center items-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "mb-4 text-gray-300 dark:text-gray-600", style: { width: "72px", height: "72px" }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6.52 4.86A9 9 0 1 1 3.08 10.83" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M11 8v5l4 2" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-1", children: "No Recent Searches" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm", children: "Words you look up will appear here." })
+            ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 pt-2", children: history.map((word, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => {
+                  setSearchTerm(word);
+                  handleSearch(word);
+                },
+                className: "px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center transition-all duration-200 hover:scale-110 hover:shadow-lg active:scale-95 cursor-pointer",
+                style: {
+                  backgroundColor: "color-mix(in srgb, var(--accent-color), transparent 85%)",
+                  color: "var(--accent-color)",
+                  border: "1px solid var(--accent-color)"
+                },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.backgroundColor = "var(--accent-color)";
+                  e.currentTarget.style.color = "var(--on-accent-text)";
+                  e.currentTarget.style.boxShadow = "0 0 15px color-mix(in srgb, var(--accent-color), transparent 40%)";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--accent-color), transparent 85%)";
+                  e.currentTarget.style.color = "var(--accent-color)";
+                  e.currentTarget.style.boxShadow = "none";
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: word })
+              },
+              i
+            )) }) })
+          ] }),
+          activeView === "phrasebook" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 fade-in h-full flex flex-col", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 mb-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold", style: { color: isDarkMode ? "#ffffff" : "#111827" }, children: "Phrasebook" }),
+                phrasebook.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: handleClearPhrasebook,
+                    disabled: clearPhrasebookStatus !== "idle",
+                    className: "text-sm px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer",
+                    style: {
+                      backgroundColor: clearPhrasebookStatus === "done" ? "#10b981" : "transparent",
+                      color: clearPhrasebookStatus === "done" ? "#ffffff" : "#f87171",
+                      border: `1.5px solid ${clearPhrasebookStatus === "done" ? "#10b981" : "#f87171"}`,
+                      opacity: clearPhrasebookStatus === "clearing" ? 0.6 : 1
+                    },
+                    onMouseEnter: (e) => {
+                      if (clearPhrasebookStatus === "idle") {
+                        e.currentTarget.style.backgroundColor = "rgba(248, 113, 113, 0.15)";
+                      }
+                    },
+                    onMouseLeave: (e) => {
+                      if (clearPhrasebookStatus === "idle") {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                      }
+                    },
+                    children: clearPhrasebookStatus === "idle" ? "Clear All" : clearPhrasebookStatus === "clearing" ? "Clearing..." : "Cleared!"
+                  }
+                )
+              ] }),
+              phrasebook.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "svg",
+                  {
+                    className: "absolute pointer-events-none",
+                    style: { left: "14px", top: "50%", transform: "translateY(-50%)" },
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "18",
+                    height: "18",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    stroke: isDarkMode ? "#9ca3af" : "#6b7280",
+                    strokeWidth: "2",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "8" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "input",
+                  {
+                    type: "text",
+                    value: phrasebookSearchTerm,
+                    onChange: (e) => setPhrasebookSearchTerm(e.target.value),
+                    placeholder: "Find in phrasebook...",
+                    className: "phrasebook-search-input",
+                    style: {
+                      width: "100%",
+                      paddingLeft: "44px",
+                      paddingRight: "16px",
+                      paddingTop: "12px",
+                      paddingBottom: "12px",
+                      borderRadius: "24px",
+                      fontSize: "14px",
+                      backgroundColor: isDarkMode ? "#1f2937" : "#f3f4f6",
+                      color: isDarkMode ? "#ffffff" : "#111827",
+                      border: "1.5px solid rgba(75, 85, 99, 0.5)",
+                      outline: "none",
+                      transition: "all 0.2s ease"
+                    },
+                    onFocus: (e) => {
+                      e.currentTarget.style.border = "1.5px solid var(--accent-color)";
+                      e.currentTarget.style.boxShadow = "0 0 10px rgba(var(--accent-rgb), 0.3)";
+                    },
+                    onBlur: (e) => {
+                      e.currentTarget.style.border = "1.5px solid rgba(75, 85, 99, 0.5)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-grow overflow-y-auto pr-2 pb-4 custom-scrollbar", style: { display: "flex", flexDirection: "column", gap: "12px" }, children: filteredPhrasebook.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center text-gray-400 dark:text-gray-400 py-8 h-full flex flex-col justify-center items-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "mb-4 text-gray-300 dark:text-gray-600", style: { width: "72px", height: "72px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-1", children: phrasebookSearchTerm ? "No Matches Found" : "Build Your Phrasebook" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1 text-sm", children: phrasebookSearchTerm ? "Try a different search term." : "Save words by clicking the bookmark icon." })
+            ] }) : filteredPhrasebook.map((phrase) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                className: "rounded-xl overflow-hidden cursor-pointer group phrasebook-card flex-shrink-0 mr-2",
+                style: {
+                  backgroundColor: isDarkMode ? "#1f2937" : "#ffffff",
+                  border: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb"}`,
+                  transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)"
+                },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
+                  e.currentTarget.style.borderColor = "var(--accent-color)";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.borderColor = isDarkMode ? "rgba(55, 65, 81, 0.8)" : "#e5e7eb";
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "flex items-center p-4",
+                      onClick: () => setExpandedPhraseId(expandedPhraseId === phrase.id ? null : phrase.id),
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-grow min-w-0", onContextMenu: (e) => {
+                          e.preventDefault();
+                          playSpecificWord(phrase.word);
+                        }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: `phrase-word font-bold text-lg capitalize truncate transition-colors duration-300 ${speakingRelatedWord === phrase.word ? "animate-pulse-subtle text-accent" : ""}`,
+                              style: { color: isDarkMode ? "#ffffff" : "#111827" },
+                              children: phrase.word
+                            }
+                          ),
+                          showPhrasebookPhonetic && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "text-sm truncate",
+                              style: { color: isDarkMode ? "#9ca3af" : "#6b7280" },
+                              children: phrase.phonetic
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: `flex-shrink-0 text-base px-3 max-w-[40%] ${isRTLLanguage(targetLanguage) ? "text-right" : "text-left"}`,
+                            dir: isRTLLanguage(targetLanguage) ? "rtl" : "ltr",
+                            style: {
+                              color: isDarkMode ? "#d1d5db" : "#374151",
+                              fontFamily: isRTLLanguage(targetLanguage) ? "Vazirmatn, sans-serif" : "inherit"
+                            },
+                            children: truncateText(phrase.translation, 20)
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "button",
+                          {
+                            onClick: (e) => {
+                              e.stopPropagation();
+                              deletePhrase(phrase.id);
+                              setPhrasebook((p) => p.filter((x) => x.id !== phrase.id));
+                            },
+                            className: "p-1.5 transition-all duration-200 hover:scale-125 cursor-pointer",
+                            style: { color: isDarkMode ? "#6b7280" : "#9ca3af", background: "transparent", border: "none" },
+                            onMouseEnter: (e) => {
+                              e.currentTarget.style.color = "#ef4444";
+                            },
+                            onMouseLeave: (e) => {
+                              e.currentTarget.style.color = isDarkMode ? "#6b7280" : "#9ca3af";
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" }) })
+                          }
+                        )
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        overflow: "hidden",
+                        maxHeight: expandedPhraseId === phrase.id ? "600px" : "0px",
+                        opacity: expandedPhraseId === phrase.id ? 1 : 0,
+                        transform: expandedPhraseId === phrase.id ? "translateY(0)" : "translateY(-8px)",
+                        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                      },
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "div",
+                        {
+                          className: "px-4 pb-8 pt-3 overflow-y-auto custom-scrollbar",
+                          style: {
+                            maxHeight: "300px",
+                            borderTop: `1px solid ${isDarkMode ? "rgba(55, 65, 81, 0.6)" : "#e5e7eb"}`,
+                            backgroundColor: isDarkMode ? "rgba(31, 41, 55, 0.5)" : "rgba(249, 250, 251, 0.5)"
+                          },
+                          children: [
+                            showPhrasebookMeaning && phrase.meaning && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-semibold mb-1", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Meaning" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base leading-relaxed", style: { color: isDarkMode ? "#e5e7eb" : "#374151" }, children: phrase.meaning })
+                            ] }),
+                            showPhrasebookExamples && phrase.example && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Example" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : "#4b5563" }, children: [
+                                '"',
+                                phrase.example,
+                                '"'
+                              ] })
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "p",
+                              {
+                                className: `text-base leading-relaxed mb-4 ${isRTLLanguage(targetLanguage) ? "text-right" : "text-left"}`,
+                                dir: isRTLLanguage(targetLanguage) ? "rtl" : "ltr",
+                                style: {
+                                  fontFamily: isRTLLanguage(targetLanguage) ? "Vazirmatn, sans-serif" : "inherit",
+                                  color: isDarkMode ? "#e5e7eb" : "#374151"
+                                },
+                                children: phrase.translation
+                              }
+                            ),
+                            showPhrasebookSynonyms && phrase.synonyms && phrase.synonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Synonyms" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.synonyms.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "span",
+                                {
+                                  onClick: () => handleRelatedWordClick(s),
+                                  onContextMenu: (e) => {
+                                    e.preventDefault();
+                                    handlePlayRelatedWordSound(s);
+                                  },
+                                  title: `${s} (Right-click to pronounce)`,
+                                  className: "px-3 rounded-full text-sm font-medium cursor-pointer word-chip-interactive",
+                                  style: {
+                                    paddingTop: "6px",
+                                    paddingBottom: "0px",
+                                    backgroundColor: "var(--accent-soft-bg)",
+                                    color: "var(--accent-color)",
+                                    border: "1px solid var(--accent-color)"
+                                  },
+                                  children: s
+                                },
+                                i
+                              )) })
+                            ] }),
+                            showPhrasebookAntonyms && phrase.antonyms && phrase.antonyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Antonyms" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.antonyms.map((a, i) => {
+                                const baseColor = isDarkMode ? "#ef4444" : "#b91c1c";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(a),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(a);
+                                    },
+                                    title: `${a} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderWidth: "1px",
+                                      borderStyle: "solid"
+                                    },
+                                    children: a
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookNouns && phrase.nouns && phrase.nouns.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Nouns" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.nouns.map((n, i) => {
+                                const baseColor = isDarkMode ? "#60a5fa" : "#1e40af";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(n),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(n);
+                                    },
+                                    title: `${n} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: n
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookVerbs && phrase.verbs && phrase.verbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Verbs" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.verbs.map((v, i) => {
+                                const baseColor = isDarkMode ? "#4ade80" : "#15803d";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(v),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(v);
+                                    },
+                                    title: `${v} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: v
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookAdjectives && phrase.adjectives && phrase.adjectives.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Adjectives" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.adjectives.map((adj, i) => {
+                                const baseColor = isDarkMode ? "#fbbf24" : "#b45309";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(adj),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(adj);
+                                    },
+                                    title: `${adj} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: adj
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookAdverbs && phrase.adverbs && phrase.adverbs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Adverbs" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.adverbs.map((adv, i) => {
+                                const baseColor = isDarkMode ? "#a78bfa" : "#6b21a8";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(adv),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(adv);
+                                    },
+                                    title: `${adv} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: adv
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookHypernyms && phrase.hypernyms && phrase.hypernyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Hypernyms" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.hypernyms.map((hyp, i) => {
+                                const baseColor = isDarkMode ? "#2dd4bf" : "#0d9488";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(hyp),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(hyp);
+                                    },
+                                    title: `${hyp} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: hyp
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            showPhrasebookHyponyms && phrase.hyponyms && phrase.hyponyms.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold mb-2", style: { color: isDarkMode ? "#9ca3af" : "#6b7280" }, children: "Hyponyms" }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: phrase.hyponyms.map((hyp, i) => {
+                                const baseColor = isDarkMode ? "#f472b6" : "#db2777";
+                                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    onClick: () => handleRelatedWordClick(hyp),
+                                    onContextMenu: (e) => {
+                                      e.preventDefault();
+                                      handlePlayRelatedWordSound(hyp);
+                                    },
+                                    title: `${hyp} (Right-click to pronounce)`,
+                                    className: "px-3 rounded-full text-sm font-medium border cursor-pointer word-chip-interactive",
+                                    style: {
+                                      paddingTop: "6px",
+                                      paddingBottom: "0px",
+                                      backgroundColor: `color-mix(in srgb, ${baseColor}, transparent 90%)`,
+                                      borderColor: `color-mix(in srgb, ${baseColor}, transparent 80%)`,
+                                      color: baseColor,
+                                      borderStyle: "solid"
+                                    },
+                                    children: hyp
+                                  },
+                                  i
+                                );
+                              }) })
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-6 w-full" })
+                          ]
+                        }
+                      )
+                    }
+                  )
+                ]
+              },
+              phrase.id
+            )) })
+          ] }),
           activeView === "settings" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 fade-in pb-6", onClick: () => setSelectedNumericControl(null), children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-gray-800 dark:text-white mb-4", children: "Settings" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -20906,34 +19917,11 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                 isOpen: !!settingsGroupState["General & API"],
                 onToggle: () => toggleSettingsGroup("General & API"),
                 isDarkMode,
-                glassmorphismEnabled,
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mb-2", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "Translation Engine" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: "Choose between high-quality AI lookup (Cerebras) or blazing-fast free translations (Google Translate).", className: "info-badge-offset" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      CustomDropdown,
-                      {
-                        value: translationEngine,
-                        options: [
-                          { value: "cerebras", label: "Cerebras AI" },
-                          { value: "google", label: "Google Translate (Free & Fast)" }
-                        ],
-                        onChange: async (val) => {
-                          const engine = val;
-                          setTranslationEngine(engine);
-                          await storage.set("translationEngine", engine);
-                        },
-                        isDarkMode
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mb-2", children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "Target Language" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: "Choose the language for definitions and translations. (Select by typing and pressing Enter, or by clicking)", className: "info-badge-offset" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: "Select the language by typing and pressing Enter, or by clicking with the mouse.", className: "info-badge-offset" })
                     ] }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       LanguageSelector,
@@ -20945,150 +19933,31 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                         },
                         isDarkMode
                       }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `p-4 rounded-xl settings-card transition-opacity duration-200 ${translationEngine === "google" ? "opacity-50" : ""}`, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mb-2", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "Cerebras API Key" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: translationEngine === "google" ? "Locked: Google Translate is active." : "Required for definitions.", className: "info-badge-offset" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "input",
-                      {
-                        type: "password",
-                        value: apiKey,
-                        onChange: (e) => setApiKey(e.target.value),
-                        onBlur: () => handleSaveApiKey(apiKey),
-                        placeholder: translationEngine === "google" ? "Not required (Google Translate active)" : "Enter Cerebras API key",
-                        disabled: translationEngine === "google",
-                        className: `w-full px-3 py-2 border rounded-lg text-sm bg-transparent text-gray-800 dark:text-gray-200 ${translationEngine === "google" ? "border-gray-200 dark:border-gray-700 cursor-not-allowed" : "border-gray-300 dark:border-gray-500"}`,
-                        style: { backgroundColor: "transparent" }
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `p-4 rounded-xl settings-card transition-opacity duration-200 ${translationEngine === "google" ? "opacity-50" : ""}`, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mb-2", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "Cerebras Model" }),
-                      loadingModels && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-500 animate-pulse", children: "Loading..." }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: translationEngine === "google" ? "Locked: Google Translate is active." : "Selected AI model for dictionary lookup.", className: "info-badge-offset" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      CustomDropdown,
-                      {
-                        value: cerebrasModel,
-                        options: cerebrasModels.map((model) => ({ value: model, label: model })),
-                        onChange: handleCerebrasModelChange,
-                        isDarkMode,
-                        disabled: translationEngine === "google"
-                      }
                     ),
-                    modelsError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-1", children: modelsError })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-2", children: "Choose the language for definitions and translations." })
                   ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "UI Mode" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(InfoBadge, { note: "Minimal mode hides all extra icons and buttons to create a clean, clutter-free lookup popup. Double click the minimal popup to return to Classic mode.", className: "info-badge-offset" })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200 mb-2", children: "Cerebras API Key" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "password", value: apiKey, onChange: (e) => setApiKey(e.target.value), onBlur: () => handleSaveApiKey(apiKey), placeholder: "Enter Cerebras API key", className: "w-full px-3 py-2 border border-gray-300 dark:border-gray-500 rounded-lg text-sm bg-transparent text-gray-800 dark:text-gray-200", style: { backgroundColor: "transparent" } }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-2", children: "Required for definitions." })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-2", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200", children: "Cerebras Model" }),
+                      loadingModels && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-gray-500 animate-pulse", children: "Loading..." })
                     ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: {
-                      position: "relative",
-                      width: "100%",
-                      height: "40px",
-                      backgroundColor: isDarkMode ? "#1a1d24" : "#f3f4f6",
-                      borderRadius: "9999px",
-                      border: isDarkMode ? "1px solid #2B3544" : "1px solid #e5e7eb",
-                      overflow: "hidden",
-                      display: "flex",
-                      cursor: "pointer",
-                      userSelect: "none"
-                    }, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "button",
-                        {
-                          onClick: () => {
-                            setUiMode("classic");
-                            storage.set("dictionaryUiMode", "classic");
-                          },
-                          style: {
-                            position: "absolute",
-                            left: 0,
-                            top: 0,
-                            width: "53%",
-                            height: "100%",
-                            clipPath: "polygon(0 0, 100% 0, 88.68% 100%, 0 100%)",
-                            backgroundColor: uiMode === "classic" ? isDarkMode ? "#3b1c21" : "#fee2e2" : "transparent",
-                            color: uiMode === "classic" ? isDarkMode ? "#f87171" : "#b91c1c" : isDarkMode ? "#9ca3af" : "#6b7280",
-                            border: "none",
-                            outline: "none",
-                            cursor: "pointer",
-                            fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-                            fontSize: "11px",
-                            fontWeight: "bold",
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            paddingRight: "6%",
-                            transition: "all 0.2s ease",
-                            zIndex: uiMode === "classic" ? 2 : 1
-                          },
-                          children: "Classic"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "button",
-                        {
-                          onClick: () => {
-                            setUiMode("minimal");
-                            storage.set("dictionaryUiMode", "minimal");
-                          },
-                          style: {
-                            position: "absolute",
-                            right: 0,
-                            top: 0,
-                            width: "53%",
-                            height: "100%",
-                            clipPath: "polygon(11.32% 0, 100% 0, 100% 100%, 0 100%)",
-                            backgroundColor: uiMode === "minimal" ? isDarkMode ? "#152b22" : "#d1fae5" : "transparent",
-                            color: uiMode === "minimal" ? isDarkMode ? "#34d399" : "#065f46" : isDarkMode ? "#9ca3af" : "#6b7280",
-                            border: "none",
-                            outline: "none",
-                            cursor: "pointer",
-                            fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-                            fontSize: "11px",
-                            fontWeight: "bold",
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            paddingLeft: "6%",
-                            transition: "all 0.2s ease",
-                            zIndex: uiMode === "minimal" ? 2 : 1
-                          },
-                          children: "Minimal"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { style: {
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        pointerEvents: "none",
-                        zIndex: 3
-                      }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "line",
-                        {
-                          x1: "53%",
-                          y1: "0",
-                          x2: "47%",
-                          y2: "100%",
-                          stroke: isDarkMode ? "#2B3544" : "#e5e7eb",
-                          strokeWidth: "1"
-                        }
-                      ) })
-                    ] })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "select",
+                      {
+                        value: cerebrasModel,
+                        onChange: (e) => handleCerebrasModelChange(e.target.value),
+                        className: "w-full px-3 py-2 border border-gray-300 dark:border-gray-500 rounded-lg text-sm bg-transparent text-gray-800 dark:text-gray-200 cursor-pointer",
+                        style: { backgroundColor: isDarkMode ? "#1f2937" : "#ffffff" },
+                        children: cerebrasModels.map((model) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: model, style: { backgroundColor: isDarkMode ? "#1f2937" : "#ffffff" }, children: model }, model))
+                      }
+                    ),
+                    modelsError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-1", children: modelsError }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-2", children: "Selected AI model for dictionary lookup." })
                   ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card flex justify-between items-center", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5", children: [
@@ -21183,7 +20052,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                 isDarkMode,
                 infoNote: "Choose which items should be shown in Dictionary and Phrasebook.",
                 infoBadgeClassName: "info-badge-header-offset",
-                glassmorphismEnabled,
                 children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 space-y-4", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center mb-2", children: [
@@ -21252,40 +20120,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                       },
                       idx
                     )) })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-px bg-gray-200 dark:bg-gray-700 opacity-50" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-medium mb-2 text-gray-500 dark:text-gray-400", children: "Minimal View" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: [
-                      { label: "Phonetic", state: showMinPhonetic, setter: setShowMinPhonetic },
-                      { label: "Meaning", state: showMinMeaning, setter: setShowMinMeaning },
-                      { label: "Examples", state: showMinExamples, setter: setShowMinExamples },
-                      { label: "Synonyms", state: showMinSynonyms, setter: setShowMinSynonyms },
-                      { label: "Antonyms", state: showMinAntonyms, setter: setShowMinAntonyms },
-                      { label: "Nouns", state: showMinNouns, setter: setShowMinNouns },
-                      { label: "Verbs", state: showMinVerbs, setter: setShowMinVerbs },
-                      { label: "Adjectives", state: showMinAdjectives, setter: setShowMinAdjectives },
-                      { label: "Adverbs", state: showMinAdverbs, setter: setShowMinAdverbs },
-                      { label: "Hypernyms", state: showMinHypernyms, setter: setShowMinHypernyms },
-                      { label: "Hyponyms", state: showMinHyponyms, setter: setShowMinHyponyms },
-                      { label: "Summary", state: showMinSummary, setter: setShowMinSummary },
-                      { label: "Key Concepts", state: showMinKeyConcepts, setter: setShowMinKeyConcepts }
-                    ].map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "button",
-                      {
-                        onClick: () => item.setter(!item.state),
-                        className: "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border hover:scale-105",
-                        style: {
-                          backgroundColor: item.state ? "var(--accent-color)" : isDarkMode ? "rgba(55, 65, 81, 0.5)" : "#f3f4f6",
-                          color: item.state ? "var(--on-accent-text)" : isDarkMode ? "#d1d5db" : "#4b5563",
-                          borderColor: item.state ? "var(--accent-color)" : "transparent",
-                          boxShadow: item.state ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
-                          cursor: "pointer"
-                        },
-                        children: item.label
-                      },
-                      idx
-                    )) })
                   ] })
                 ] })
               }
@@ -21297,7 +20131,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                 isOpen: !!settingsGroupState["Appearance"],
                 onToggle: () => toggleSettingsGroup("Appearance"),
                 isDarkMode,
-                glassmorphismEnabled,
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium text-gray-800 dark:text-gray-200 mb-3", children: "Theme Color" }),
@@ -21480,7 +20313,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                 isOpen: !!settingsGroupState["Voice"],
                 onToggle: () => toggleSettingsGroup("Voice"),
                 isDarkMode,
-                glassmorphismEnabled,
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center", children: [
@@ -21548,16 +20380,17 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                           focusedVoiceLang === "en" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs opacity-70", children: "(selected)" })
                         ] }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomDropdown,
+                          "select",
                           {
                             value: ttsVoiceEn,
-                            options: getVoiceOptions("en"),
-                            onChange: (val) => {
-                              setTtsVoiceEn(val);
-                              storage.set("ttsVoice_en", val);
+                            onChange: (e) => {
+                              setTtsVoiceEn(e.target.value);
+                              storage.set("ttsVoice_en", e.target.value);
                             },
-                            isDarkMode,
-                            onFocus: () => setFocusedVoiceLang("en")
+                            onClick: () => setFocusedVoiceLang("en"),
+                            className: `w-full text-sm px-2 py-1 rounded cursor-pointer outline-none ${isDarkMode ? "bg-transparent border border-gray-500 text-gray-200" : ""}`,
+                            style: isDarkMode ? {} : { backgroundColor: "#E5E7EB", color: "#555F6C", border: "none" },
+                            children: getVoiceOptions("en").map((opt) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: opt.value, children: opt.label }, opt.value))
                           }
                         )
                       ]
@@ -21574,16 +20407,17 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                           focusedVoiceLang === "fa" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs opacity-70", children: "(selected)" })
                         ] }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomDropdown,
+                          "select",
                           {
                             value: ttsVoiceFa,
-                            options: getVoiceOptions("fa"),
-                            onChange: (val) => {
-                              setTtsVoiceFa(val);
-                              storage.set("ttsVoice_fa", val);
+                            onChange: (e) => {
+                              setTtsVoiceFa(e.target.value);
+                              storage.set("ttsVoice_fa", e.target.value);
                             },
-                            isDarkMode,
-                            onFocus: () => setFocusedVoiceLang("fa")
+                            onClick: () => setFocusedVoiceLang("fa"),
+                            className: `w-full text-sm px-2 py-1 rounded cursor-pointer outline-none ${isDarkMode ? "bg-transparent border border-gray-500 text-gray-200" : ""}`,
+                            style: isDarkMode ? {} : { backgroundColor: "#E5E7EB", color: "#555F6C", border: "none" },
+                            children: getVoiceOptions("fa").map((opt) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: opt.value, children: opt.label }, opt.value))
                           }
                         )
                       ]
@@ -21600,16 +20434,17 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                           focusedVoiceLang === "ru" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs opacity-70", children: "(selected)" })
                         ] }),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomDropdown,
+                          "select",
                           {
                             value: ttsVoiceRu,
-                            options: getVoiceOptions("ru"),
-                            onChange: (val) => {
-                              setTtsVoiceRu(val);
-                              storage.set("ttsVoice_ru", val);
+                            onChange: (e) => {
+                              setTtsVoiceRu(e.target.value);
+                              storage.set("ttsVoice_ru", e.target.value);
                             },
-                            isDarkMode,
-                            onFocus: () => setFocusedVoiceLang("ru")
+                            onClick: () => setFocusedVoiceLang("ru"),
+                            className: `w-full text-sm px-2 py-1 rounded cursor-pointer outline-none ${isDarkMode ? "bg-transparent border border-gray-500 text-gray-200" : ""}`,
+                            style: isDarkMode ? {} : { backgroundColor: "#E5E7EB", color: "#555F6C", border: "none" },
+                            children: getVoiceOptions("ru").map((opt) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: opt.value, children: opt.label }, opt.value))
                           }
                         )
                       ]
@@ -21627,7 +20462,6 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
                 isDarkMode,
                 infoNote: "To set a shortcut, click the button and press your desired keys. Some actions support a double-tap (e.g., 2× Ctrl). Press 'Escape' to cancel recording.",
                 infoBadgeClassName: "info-badge-header-offset keyboard-badge-offset",
-                glassmorphismEnabled,
                 children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 rounded-xl settings-card space-y-1", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(ShortcutRecorder, { label: "Focus Search", shortcut: shortcuts.focusSearch, onChange: (s) => updateShortcut("focusSearch", s), isDarkMode, onRecordingChange: setIsRecordingAnyShortcut }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(ShortcutRecorder, { label: "Close / Reset", shortcut: shortcuts.close, onChange: (s) => updateShortcut("close", s), isDarkMode, onRecordingChange: setIsRecordingAnyShortcut }),
@@ -21657,17 +20491,111 @@ const App = ({ initialSearchTerm, onClose, containerElement, initialView = "dict
     }
   ) });
 };
+const SendIcon = () => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  "svg",
+  {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    className: "w-6 h-6 neon-icon-style",
+    children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" })
+  }
+);
+const AskAIView = ({ context, isDarkMode }) => {
+  const [messages, setMessages] = reactExports.useState([]);
+  const [question, setQuestion] = reactExports.useState("");
+  const [isLoading, setIsLoading] = reactExports.useState(false);
+  const scrollContainerRef = reactExports.useRef(null);
+  const scrollToBottom = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }
+  };
+  reactExports.useEffect(() => {
+    scrollToBottom();
+  }, [messages, isLoading]);
+  reactExports.useEffect(() => {
+    setMessages([]);
+  }, [context]);
+  const handleAsk = async () => {
+    if (!question.trim()) return;
+    const userMsg = question;
+    setQuestion("");
+    setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
+    setIsLoading(true);
+    try {
+      const result = await sendMessage("ASK_AI", { context, question: userMsg });
+      setMessages((prev) => [...prev, { role: "ai", content: result }]);
+    } catch (e) {
+      setMessages((prev) => [...prev, { role: "ai", content: `Error: ${e.message}` }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-4 fade-in flex flex-col h-full", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold neon-text mb-2", "data-text": "Ask AI", children: "Ask AI" }),
+    context ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700 dark:text-gray-300 italic py-1", style: { borderLeft: "3px solid var(--accent-color)", paddingLeft: "7px", color: isDarkMode ? "#e0e0e0" : void 0 }, children: [
+      '"',
+      context,
+      '"'
+    ] }) }) : null,
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref: scrollContainerRef, className: "flex-grow overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar", children: [
+      messages.length === 0 && !isLoading && null,
+      messages.map((msg, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: `max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ${msg.role === "user" ? "text-accent rounded-br-none font-semibold flex items-center justify-center" : "bg-transparent text-gray-800 dark:text-gray-200 rounded-bl-none flex items-center"}`,
+          style: msg.role === "user" ? { border: "1px solid var(--accent-color)" } : { border: "1px solid #374151" },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "whitespace-pre-wrap", children: msg.content })
+        }
+      ) }, idx)),
+      isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-transparent rounded-2xl rounded-bl-none px-4 py-3 shadow-sm", style: { border: "1px solid var(--border-dark)" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center h-4", style: { gap: "2.5px" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "0ms" } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "200ms" } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "neon-typing-dot", style: { animationDelay: "400ms" } })
+      ] }) }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: (e) => {
+      e.preventDefault();
+      handleAsk();
+    }, className: "mt-auto relative ask-ai-form mb-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "input",
+        {
+          type: "text",
+          value: question,
+          onChange: (e) => setQuestion(e.target.value),
+          placeholder: "Ask a question...",
+          disabled: isLoading,
+          className: "ask-ai-input",
+          autoFocus: true
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "submit",
+          disabled: !question.trim() || isLoading,
+          className: "ask-ai-send-btn",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SendIcon, {})
+        }
+      )
+    ] })
+  ] });
+};
 const createPopup = async (selectedText, rangeRect, initialView = "dictionary") => {
   if (typeof removeAll !== "undefined") removeAll();
   else removePopup();
-  const { dictionaryGlassmorphism, dictionaryDarkMode, dictionaryVisualEffects, dictionaryTheme, dictionaryUiMode } = await new Promise((resolve) => {
-    chrome.storage.local.get(["dictionaryGlassmorphism", "dictionaryDarkMode", "dictionaryVisualEffects", "dictionaryTheme", "dictionaryUiMode"], (result) => {
+  const { dictionaryGlassmorphism, dictionaryDarkMode, dictionaryVisualEffects, dictionaryTheme } = await new Promise((resolve) => {
+    chrome.storage.local.get(["dictionaryGlassmorphism", "dictionaryDarkMode", "dictionaryVisualEffects", "dictionaryTheme"], (result) => {
       resolve({
         dictionaryGlassmorphism: result.dictionaryGlassmorphism ?? false,
         dictionaryDarkMode: result.dictionaryDarkMode ?? true,
         dictionaryVisualEffects: result.dictionaryVisualEffects ?? true,
-        dictionaryTheme: result.dictionaryTheme ?? "indigo",
-        dictionaryUiMode: result.dictionaryUiMode ?? "classic"
+        dictionaryTheme: result.dictionaryTheme ?? "indigo"
       });
     });
   });
@@ -21676,13 +20604,10 @@ const createPopup = async (selectedText, rangeRect, initialView = "dictionary") 
   const scrollY = window.scrollY;
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
-  const isMinimal = dictionaryUiMode === "minimal";
-  const popupWidth = isMinimal ? 360 : POPUP_WIDTH;
-  const popupHeight = isMinimal ? 320 : POPUP_HEIGHT;
-  let top = rangeRect.bottom + POPUP_MARGIN + popupHeight < viewportHeight ? scrollY + rangeRect.bottom + POPUP_MARGIN : scrollY + rangeRect.top - popupHeight - POPUP_MARGIN;
+  let top = rangeRect.bottom + POPUP_MARGIN + POPUP_HEIGHT < viewportHeight ? scrollY + rangeRect.bottom + POPUP_MARGIN : scrollY + rangeRect.top - POPUP_HEIGHT - POPUP_MARGIN;
   if (top < scrollY) top = scrollY + POPUP_MARGIN;
-  let left = rangeRect.left + rangeRect.width / 2 - popupWidth / 2;
-  if (left + popupWidth > viewportWidth) left = viewportWidth - popupWidth - POPUP_MARGIN;
+  let left = rangeRect.left + rangeRect.width / 2 - POPUP_WIDTH / 2;
+  if (left + POPUP_WIDTH > viewportWidth) left = viewportWidth - POPUP_WIDTH - POPUP_MARGIN;
   if (left < 0) left = POPUP_MARGIN;
   left += scrollX;
   Object.assign(popupContainer.style, {
@@ -21690,8 +20615,8 @@ const createPopup = async (selectedText, rangeRect, initialView = "dictionary") 
     left: `${left}px`,
     top: `${top}px`,
     zIndex: "2147483647",
-    width: `${popupWidth}px`,
-    height: `${popupHeight}px`,
+    width: `${POPUP_WIDTH}px`,
+    height: `${POPUP_HEIGHT}px`,
     borderRadius: "16px",
     boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
     // Animation styles - Use only scale transform to preserve backdrop-filter visibility from frame 1
@@ -21707,9 +20632,8 @@ const createPopup = async (selectedText, rangeRect, initialView = "dictionary") 
   popupContainer.addEventListener("mousedown", (e) => {
     const path = e.composedPath();
     const header = path.find((el) => el.tagName === "HEADER" || el.dataset?.dragHandle === "true");
-    const interactive = path.find((el) => ["BUTTON", "INPUT", "A", "TEXTAREA", "P", "SPAN", "H1", "H2", "LI"].includes(el.tagName));
-    const inScrollable = path.some((el) => el.tagName === "MAIN" || el.classList && el.classList.contains("berkut-scroll-contain"));
-    if (header && !interactive && !inScrollable) {
+    const interactive = path.find((el) => ["BUTTON", "INPUT", "A", "TEXTAREA"].includes(el.tagName));
+    if (header && !interactive) {
       isDragging = true;
       startX = e.clientX;
       startY = e.clientY;
@@ -21735,7 +20659,6 @@ const createPopup = async (selectedText, rangeRect, initialView = "dictionary") 
   const css = await loadStyles();
   const fontStyleEl = document.createElement("style");
   fontStyleEl.textContent = `
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
         @font-face { font-family: 'Vazirmatn'; src: url('${fontRegularUrl}') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
         @font-face { font-family: 'Vazirmatn'; src: url('${fontBoldUrl}') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
     `;
@@ -21857,26 +20780,24 @@ document.addEventListener("mouseup", async (event) => {
     removeAll();
   }
 });
-if (typeof chrome !== "undefined" && chrome.runtime?.onMessage) {
-  chrome.runtime.onMessage.addListener((message) => {
-    if (message.type === "TOGGLE_POPUP") {
-      if (popupContainer) {
-        removeAll();
-      } else {
-        const viewportW = window.innerWidth;
-        const viewportH = window.innerHeight;
-        const targetTop = Math.max(0, (viewportH - POPUP_HEIGHT) / 2);
-        const targetLeft = Math.max(0, (viewportW - POPUP_WIDTH) / 2);
-        const dummyRect = {
-          bottom: targetTop - 8,
-          left: targetLeft + POPUP_WIDTH / 2,
-          width: 0,
-          top: targetTop - 8};
-        createPopup("", dummyRect, "dictionary");
-      }
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.type === "TOGGLE_POPUP") {
+    if (popupContainer) {
+      removeAll();
+    } else {
+      const viewportW = window.innerWidth;
+      const viewportH = window.innerHeight;
+      const targetTop = Math.max(0, (viewportH - POPUP_HEIGHT) / 2);
+      const targetLeft = Math.max(0, (viewportW - POPUP_WIDTH) / 2);
+      const dummyRect = {
+        bottom: targetTop - 8,
+        left: targetLeft + POPUP_WIDTH / 2,
+        width: 0,
+        top: targetTop - 8};
+      createPopup("", dummyRect, "dictionary");
     }
-  });
-}
+  }
+});
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && triggerButton) removeAll();
 });

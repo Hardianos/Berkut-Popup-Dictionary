@@ -1,0 +1,18 @@
+/* Vazirmatn Font - Bundled for Extension */
+/* Font files should be placed in fonts/ directory */
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('vazirmatn-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('vazirmatn-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+}

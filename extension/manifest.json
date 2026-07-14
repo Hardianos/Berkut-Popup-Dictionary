@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Berkut Dictionary",
+  "description": "Clean. Fast. Powerful. Made by Беркут.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "overlay.js"
+      ],
+      "css": [],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "offscreen",
+    "tts"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "overlay.css",
+        "fonts/*.woff2",
+        "fonts/*.woff",
+        "fonts/*.ttf",
+        "assets/*.png",
+        "assets/*.svg",
+        "offscreen.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
